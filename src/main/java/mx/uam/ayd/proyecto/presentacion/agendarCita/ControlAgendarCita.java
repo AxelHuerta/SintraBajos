@@ -33,9 +33,9 @@ public class ControlAgendarCita {
       ventana.muestra(this);
    }
 
-   public void agregarCita(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
+   public void agregarCita(LocalDate fecha, LocalTime []horario, String servicio) {
       try {
-         servicioCita.agregarCita(fecha, horaInicio, horaFin);
+         servicioCita.agregarCita(fecha, horario, servicio);
          ventana.muestraDialogoConMensaje("Cita agregada");
       } catch (Exception e) {
          ventana.muestraDialogoConMensaje("Error al agendar cita: " + e.getMessage());

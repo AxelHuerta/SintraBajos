@@ -100,12 +100,17 @@ public class VentanaAgendarCita extends JFrame {
 					// tomar la hora
 					DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("h:mm a");
 					LocalTime horaInicio = LocalTime.parse(textFieldHora.getText(), formatoHora);
-					
-					// String horaI = textFieldHora.getText();
-					System.out.println(horaInicio);
-					LocalTime horaFin = LocalTime.parse(textFieldHora.getText(), formatoHora);
 
-					control.agregarCita(fecha, horaInicio, horaFin);
+					LocalTime horaFin = horaInicio.plusHours(1);
+
+					LocalTime[] horario = new LocalTime[2];
+					horario[0] = horaInicio;
+					horario[1] = horaFin;
+
+					// tomar el servicio
+					String servicio = "";
+
+					control.agregarCita(fecha, horario, servicio);
 					// toma el dato de una lista de opciones desplegable
 					// (String) comboBoxGrupo.getSelectedItem());
 				}

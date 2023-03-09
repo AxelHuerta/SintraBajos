@@ -18,7 +18,6 @@ public class Cita {
     private Long idCita;
     private Long idUsuario;
     private LocalDate fecha; // (year, month, day)
-    private LocalTime horaInicio; // (hora, minutos) 
-    private LocalTime horaFin; // (hora, minutos) 
-    private String descripcion;
+    private LocalTime [] horario;
+    private String servicio;
 }

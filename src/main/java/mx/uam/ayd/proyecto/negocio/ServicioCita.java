@@ -20,10 +20,10 @@ public class ServicioCita {
    @Autowired
    CitaRepository citaRepository; 
 
-   public Cita agregarCita(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin){
+   public Cita agregarCita(LocalDate fecha, LocalTime[] horario, String servicio){
       // Regla de negocio: No se permite agendar dos citas en un mismo horario
 
-      Cita cita = citaRepository.findByFechaAndHoraInicioAndHoraFin(fecha, horaInicio, horaFin);
+      Cita cita = citaRepository.findByFechaAndHorario(fecha, horario);
 
       if(cita != null) {
          throw new IllegalArgumentException("El horario no esta disponible");
@@ -36,8 +36,8 @@ public class ServicioCita {
 
       cita = new Cita();
       cita.setFecha(fecha);
-      cita.setHoraInicio(horaInicio);
-      cita.setHoraFin(horaFin);
+      cita.setHorario(horario);
+      cita.setServicio(servicio);
 
       citaRepository.save(cita);
 
