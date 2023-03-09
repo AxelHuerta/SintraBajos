@@ -66,10 +66,19 @@ public class VentanaPrincipal extends JFrame {
 				control.listarUsuarios();
 			}
 		});
-		
-		
+
 		btnListarUsuarios.setBounds(15, 88, 178, 29);
 		contentPane.add(btnListarUsuarios);
+
+		JButton btnAgendarCita = new JButton("Agendar cita");
+		btnAgendarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				control.agendarCitas();
+			}
+		});
+
+		btnAgendarCita.setBounds(15, 143, 178, 29);
+		contentPane.add(btnAgendarCita);
 	}
 	
 	public void muestra(ControlPrincipal control) {

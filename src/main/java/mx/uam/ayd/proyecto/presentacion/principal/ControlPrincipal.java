@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.presentacion.agregarUsuario.ControlAgregarUsuario;
 import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;
+import mx.uam.ayd.proyecto.presentacion.agendarCita.ControlAgendarCita;
 
 /**
  * Esta clase lleva el flujo de control de la ventana principal
@@ -17,13 +18,16 @@ public class ControlPrincipal {
 
 	@Autowired
 	private ControlAgregarUsuario controlAgregarUsuario;
-	
+
 	@Autowired
 	private ControlListarUsuarios controlListarUsuarios;
 
 	@Autowired
+	private ControlAgendarCita controlAgendarCita;
+
+	@Autowired
 	private VentanaPrincipal ventana;
-	
+
 	/**
 	 * Inicia el flujo de control de la ventana principal
 	 * 
@@ -38,16 +42,24 @@ public class ControlPrincipal {
 	 * 
 	 */
 	public void agregarUsuario() {
-		
+
 		controlAgregarUsuario.inicia();
-		
+
 	}
-	
+
 	/**
 	 * Método que arranca la historia de usuario "listar usuarios"
 	 * 
 	 */
 	public void listarUsuarios() {
 		controlListarUsuarios.inicia();
+	}
+
+	/**
+	 * Método que arranca la historia de usuario "agendar citas"
+	 * 
+	 */
+	public void agendarCitas() {
+		controlAgendarCita.inicia();
 	}
 }
