@@ -18,25 +18,23 @@ import mx.uam.ayd.proyecto.negocio.modelo.Cita;
  */
 public class ServicioCita {
    @Autowired
-   CitaRepository citaRepository; 
+   CitaRepository citaRepository;
 
-   public Cita agregarCita(LocalDate fecha, LocalTime[] horario, String servicio){
+   public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio) {
       // Regla de negocio: No se permite agendar dos citas en un mismo horario
 
-      Cita cita = citaRepository.findByFechaAndHorario(fecha, horario);
+      Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
 
-      if(cita != null) {
+      if (cita != null) {
          throw new IllegalArgumentException("El horario no esta disponible");
       }
-
-      // excepciones
 
       // mostrar datos en terminal
       System.out.println("Cita agregada. Fecha: " + fecha);
 
       cita = new Cita();
       cita.setFecha(fecha);
-      cita.setHorario(horario);
+      cita.setHora(hora);
       cita.setServicio(servicio);
 
       citaRepository.save(cita);

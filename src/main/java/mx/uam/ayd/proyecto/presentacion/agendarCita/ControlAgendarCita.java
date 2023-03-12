@@ -28,14 +28,12 @@ public class ControlAgendarCita {
     * 
     */
    public void inicia() {
-      System.out.println("Se abrió la vetana de las citas !!!");
-
       ventana.muestra(this);
    }
 
-   public void agregarCita(LocalDate fecha, LocalTime []horario, String servicio) {
+   public void agregarCita(LocalDate fecha, LocalTime hora, String servicio) {
       try {
-         servicioCita.agregarCita(fecha, horario, servicio);
+         servicioCita.agregarCita(fecha, hora, servicio);
          ventana.muestraDialogoConMensaje("Cita agregada");
       } catch (Exception e) {
          ventana.muestraDialogoConMensaje("Error al agendar cita: " + e.getMessage());

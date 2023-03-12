@@ -15,6 +15,5 @@ import java.time.LocalTime;
  */
 
 public interface CitaRepository extends CrudRepository <Cita, Long> {
-   // métodos de prueba 
-   public Cita findByFechaAndHorario(LocalDate fecha, LocalTime[] horario);
+   public Cita findByFechaAndHora(LocalDate fecha, LocalTime hora);
 }
