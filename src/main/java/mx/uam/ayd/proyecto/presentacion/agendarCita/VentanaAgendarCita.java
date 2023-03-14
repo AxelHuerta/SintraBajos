@@ -30,6 +30,9 @@ public class VentanaAgendarCita extends JFrame {
 	private JPanel contentPane;
 	private ControlAgendarCita control;
 	private JLabel lblHora;
+	private JLabel lblAgendarCita;
+	private JLabel lblFecha;
+	private JLabel lblServicio;
 	private JComboBox<String> comboBoxHoras;
 	private JComboBox<String> comboBoxServicios;
 
@@ -63,13 +66,13 @@ public class VentanaAgendarCita extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblAgendarCita = new JLabel("Agendar Cita");
+		lblAgendarCita = new JLabel("Agendar Cita");
 		lblAgendarCita.setBounds(5, 12, 437, 17);
 		lblAgendarCita.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lblAgendarCita);
 
 		// FECHA
-		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha = new JLabel("Fecha");
 		lblFecha.setBounds(25, 32, 60, 17);
 		contentPane.add(lblFecha);
 
@@ -88,7 +91,7 @@ public class VentanaAgendarCita extends JFrame {
 		contentPane.add(comboBoxHoras);
 
 		// SERVICIOS
-		JLabel lblServicio = new JLabel("Servicio");
+		lblServicio = new JLabel("Servicio");
 		lblServicio.setBounds(300, 100, 60, 17);
 		contentPane.add(lblServicio);
 
@@ -109,14 +112,15 @@ public class VentanaAgendarCita extends JFrame {
 		// listeners
 		btnAgendar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					// tomar la fecha del calendario
-					LocalDate date = calendar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				// tomar la fecha del calendario
+				LocalDate date = calendar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-					// tomar la hora
-					DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
+				DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
 
-					control.agregarCita(date, LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora), (String) comboBoxServicios.getSelectedItem());
-				}
+				control.agregarCita(date, LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora),
+						(String) comboBoxServicios.getSelectedItem());
+				control.comprobarCitasDia(date);
+			}
 		});
 	}
 
@@ -126,11 +130,10 @@ public class VentanaAgendarCita extends JFrame {
 		DefaultComboBoxModel<String> comboBoxModelH = new DefaultComboBoxModel<>();
 		DefaultComboBoxModel<String> comboBoxModelS = new DefaultComboBoxModel<>();
 		DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
-		LocalTime[] lapzos = new LocalTime[9];
+		LocalTime[] lapzos = new LocalTime[8];
 
 		int i = 8;
 		for (LocalTime lap : lapzos) {
-			lap = LocalTime.now();
 			lap = LocalTime.parse(i + ":00", formatoHora);
 			comboBoxModelH.addElement(lap.toString());
 			i++;

@@ -12,7 +12,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioCita;
  * 
  * Módulo de control para la historia de usuario AgendarCita
  * 
- * @author humbertocervantes
+ * @author axelhuerta
  *
  */
 @Component
@@ -37,6 +37,14 @@ public class ControlAgendarCita {
          ventana.muestraDialogoConMensaje("Cita agregada");
       } catch (Exception e) {
          ventana.muestraDialogoConMensaje("Error al agendar cita: " + e.getMessage());
+      }
+   }
+
+   public void comprobarCitasDia(LocalDate fecha) {
+      try {
+         servicioCita.comprobarCitasDia(fecha);
+      } catch (Exception e) {
+         ventana.muestraDialogoConMensaje("Error al consultar las citas del día: " + e.getMessage());
       }
    }
 

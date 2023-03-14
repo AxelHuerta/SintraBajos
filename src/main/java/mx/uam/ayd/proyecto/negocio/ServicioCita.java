@@ -6,31 +6,42 @@ import java.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
 import mx.uam.ayd.proyecto.datos.CitaRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 
-@Service
 /**
  * Servicio relacionado con las citas
  * 
  * @author axelhuerta
  *
  */
+@Service
 public class ServicioCita {
    @Autowired
    CitaRepository citaRepository;
 
+   /**
+    * 
+    * Permite agregar una cita
+    * 
+    * @param fecha
+    * @param hora
+    * @param servicio
+    * @return
+    */
    public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio) {
       // Regla de negocio: No se permite agendar dos citas en un mismo horario
 
       Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
 
       if (cita != null) {
-         throw new IllegalArgumentException("El horario no esta disponible");
+         if (comprobarCitasDia(fecha) == true) {
+            throw new IllegalArgumentException("Día lleno");
+         } else {
+            throw new IllegalArgumentException("El horario no esta disponible");
+         }
       }
-
-      // mostrar datos en terminal
-      System.out.println("Cita agregada. Fecha: " + fecha);
 
       cita = new Cita();
       cita.setFecha(fecha);
@@ -40,5 +51,24 @@ public class ServicioCita {
       citaRepository.save(cita);
 
       return cita;
+   }
+
+   /**
+    * 
+    * Comprueba si un dia ya no permite más citas
+    * 
+    * @param fecha
+    * @return un boleano si todas las horas estan ocupadas
+    */
+   public boolean comprobarCitasDia(LocalDate fecha) {
+      List<Cita> citas = new ArrayList<>();
+
+      for (Cita cita : citaRepository.findAll()) {
+         if (cita.getFecha().compareTo(fecha) == 0) {
+            citas.add(cita);
+         }
+      }
+
+      return citas.size() == 8 ? true : false;
    }
 }

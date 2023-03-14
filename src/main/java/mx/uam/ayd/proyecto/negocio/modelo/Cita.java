@@ -10,16 +10,21 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+/**
+ * Entidad de negocio Cita
+ * 
+ * @author axelhuerta
+ *
+ */
 @Entity
 @Data
 public class Cita {
-   @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCita;
     private Long idUsuario;
-    private LocalDate fecha; // (year, month, day)
+    private LocalDate fecha;
     private LocalTime hora;
     private String servicio;
-
 
 }
