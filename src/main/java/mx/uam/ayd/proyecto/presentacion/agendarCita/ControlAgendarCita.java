@@ -2,11 +2,17 @@ package mx.uam.ayd.proyecto.presentacion.agendarCita;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
+import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 
 /**
  * 
@@ -29,6 +35,10 @@ public class ControlAgendarCita {
     */
    public void inicia() {
       ventana.muestra(this);
+   }
+
+   public List<Cita> listarCitas() {
+      return servicioCita.listarCitas();
    }
 
    public void agregarCita(LocalDate fecha, LocalTime hora, String servicio) {

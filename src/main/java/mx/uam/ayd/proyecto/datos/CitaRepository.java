@@ -1,6 +1,7 @@
 package mx.uam.ayd.proyecto.datos;
 
 import org.springframework.data.repository.CrudRepository;
+
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,7 +13,6 @@ import java.time.LocalTime;
  * @author axelhuerta
  *
  */
-
 public interface CitaRepository extends CrudRepository<Cita, Long> {
    // Encuentra una cita a partir de una fecha y hora
    public Cita findByFechaAndHora(LocalDate fecha, LocalTime hora);

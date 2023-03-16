@@ -126,6 +126,10 @@ public class VentanaAgendarCita extends JFrame {
 
 	public void muestra(ControlAgendarCita control) {
 		this.control = control;
+		
+		for (int i = 0; i < control.listarCitas().size() - 1; i++) {
+			System.out.println(control.listarCitas().get(i));	
+		}
 
 		DefaultComboBoxModel<String> comboBoxModelH = new DefaultComboBoxModel<>();
 		DefaultComboBoxModel<String> comboBoxModelS = new DefaultComboBoxModel<>();

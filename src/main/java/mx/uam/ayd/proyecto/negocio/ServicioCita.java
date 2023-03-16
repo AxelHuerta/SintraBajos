@@ -21,6 +21,10 @@ public class ServicioCita {
    @Autowired
    CitaRepository citaRepository;
 
+   public List<Cita> listarCitas() {
+      return (List<Cita>) citaRepository.findAll();
+   }
+
    /**
     * 
     * Permite agregar una cita
@@ -28,7 +32,7 @@ public class ServicioCita {
     * @param fecha
     * @param hora
     * @param servicio
-    * @return
+    * @return cita
     */
    public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio) {
       // Regla de negocio: No se permite agendar dos citas en un mismo horario
@@ -44,6 +48,7 @@ public class ServicioCita {
       }
 
       cita = new Cita();
+      cita.setIdUsuario((long) 123);
       cita.setFecha(fecha);
       cita.setHora(hora);
       cita.setServicio(servicio);
