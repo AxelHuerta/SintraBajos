@@ -8,7 +8,7 @@ import java.time.LocalTime;
 
 /**
  * 
- * Repositorio para usuarios
+ * Repositorio para citas
  * 
  * @author axelhuerta
  *

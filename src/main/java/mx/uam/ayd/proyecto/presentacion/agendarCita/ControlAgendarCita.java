@@ -6,10 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
@@ -37,10 +33,12 @@ public class ControlAgendarCita {
       ventana.muestra(this);
    }
 
+   // listar citas
    public List<Cita> listarCitas() {
       return servicioCita.listarCitas();
    }
 
+   // agregar citas
    public void agregarCita(LocalDate fecha, LocalTime hora, String servicio) {
       try {
          servicioCita.agregarCita(fecha, hora, servicio);
@@ -50,6 +48,7 @@ public class ControlAgendarCita {
       }
    }
 
+   // Comprobar citas
    public void comprobarCitasDia(LocalDate fecha) {
       try {
          servicioCita.comprobarCitasDia(fecha);

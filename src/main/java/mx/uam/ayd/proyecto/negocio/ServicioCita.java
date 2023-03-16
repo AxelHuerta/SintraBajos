@@ -21,6 +21,12 @@ public class ServicioCita {
    @Autowired
    CitaRepository citaRepository;
 
+   /**
+    * 
+    * Muestra las listas registradas en la terminal
+    * 
+    * @return Lista de citas
+    */
    public List<Cita> listarCitas() {
       return (List<Cita>) citaRepository.findAll();
    }
@@ -32,7 +38,7 @@ public class ServicioCita {
     * @param fecha
     * @param hora
     * @param servicio
-    * @return cita
+    * @return
     */
    public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio) {
       // Regla de negocio: No se permite agendar dos citas en un mismo horario
