@@ -3,9 +3,9 @@ package mx.uam.ayd.proyecto.presentacion.principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mx.uam.ayd.proyecto.presentacion.agregarUsuario.ControlAgregarUsuario;
-import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;
+import mx.uam.ayd.proyecto.presentacion.Notificacion.ControlNotificacion;
 import mx.uam.ayd.proyecto.presentacion.agendarCita.ControlAgendarCita;
+import mx.uam.ayd.proyecto.presentacion.reagendarCita.ControlReagendarCita;
 
 /**
  * Esta clase lleva el flujo de control de la ventana principal
@@ -17,13 +17,13 @@ import mx.uam.ayd.proyecto.presentacion.agendarCita.ControlAgendarCita;
 public class ControlPrincipal {
 
 	@Autowired
-	private ControlAgregarUsuario controlAgregarUsuario;
-
-	@Autowired
-	private ControlListarUsuarios controlListarUsuarios;
-
-	@Autowired
 	private ControlAgendarCita controlAgendarCita;
+
+	@Autowired
+	private ControlNotificacion controlNotificacion;
+
+	@Autowired
+	private ControlReagendarCita controlReagendarCita;
 
 	@Autowired
 	private VentanaPrincipal ventana;
@@ -38,28 +38,26 @@ public class ControlPrincipal {
 	}
 
 	/**
-	 * Método que arranca la historia de usuario "agregar usuario"
+	 * Método que arranca la historia de usuario "agendar citas"
 	 * 
 	 */
-	public void agregarUsuario() {
-
-		controlAgregarUsuario.inicia();
-
-	}
-
-	/**
-	 * Método que arranca la historia de usuario "listar usuarios"
-	 * 
-	 */
-	public void listarUsuarios() {
-		controlListarUsuarios.inicia();
+	public void agendarCitas() {
+		controlAgendarCita.inicia();
 	}
 
 	/**
 	 * Método que arranca la historia de usuario "agendar citas"
 	 * 
 	 */
-	public void agendarCitas() {
-		controlAgendarCita.inicia();
+	public void verNitificaciones() {
+		controlNotificacion.inicia();
+	}
+
+	/**
+	 * Método que arranca la historia de usuario "agendar citas"
+	 * 
+	 */
+	public void reagendarCita() {
+		controlReagendarCita.inicia();
 	}
 }

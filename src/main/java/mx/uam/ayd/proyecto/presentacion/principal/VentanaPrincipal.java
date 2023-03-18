@@ -16,75 +16,99 @@ import java.awt.event.ActionEvent;
 public class VentanaPrincipal extends JFrame {
 
 	private JPanel contentPane;
-	
+
 	private ControlPrincipal control;
 
 	/**
 	 * Launch the application.
 	 *
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPrincipal frame = new VentanaPrincipal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	 * public static void main(String[] args) {
+	 * EventQueue.invokeLater(new Runnable() {
+	 * public void run() {
+	 * try {
+	 * VentanaPrincipal frame = new VentanaPrincipal();
+	 * frame.setVisible(true);
+	 * } catch (Exception e) {
+	 * e.printStackTrace();
+	 * }
+	 * }
+	 * });
+	 * }
+	 */
 
 	/**
 	 * Create the frame.
 	 */
 	public VentanaPrincipal() {
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblMiAplicacin = new JLabel("Mi Aplicación");
 		lblMiAplicacin.setBounds(5, 5, 440, 16);
 		contentPane.add(lblMiAplicacin);
-		
+
 		JButton btnAgregarUsuario = new JButton("Agregar usuario");
 		btnAgregarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.agregarUsuario();
+				// control.agregarUsuario();
 			}
 		});
 		btnAgregarUsuario.setBounds(15, 33, 178, 29);
 		contentPane.add(btnAgregarUsuario);
-		
+
 		JButton btnListarUsuarios = new JButton("Listar usuarios");
 		btnListarUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.listarUsuarios();
+				// control.listarUsuarios();
 			}
 		});
 
 		btnListarUsuarios.setBounds(15, 88, 178, 29);
 		contentPane.add(btnListarUsuarios);
 
+		// btn citas
 		JButton btnAgendarCita = new JButton("Agendar cita");
 		btnAgendarCita.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
+			public void actionPerformed(ActionEvent e) {
 				control.agendarCitas();
 			}
 		});
 
-		btnAgendarCita.setBounds(15, 143, 178, 29);
+		btnAgendarCita.setBounds(15, 148, 178, 29);
 		contentPane.add(btnAgendarCita);
+
+		// btn notificaciones
+		JButton btnNotificacion = new JButton("Notificaciones");
+		btnNotificacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				control.verNitificaciones();
+			}
+		});
+
+		btnNotificacion.setBounds(15, 183, 178, 29);
+		contentPane.add(btnNotificacion);
+
+		// btn reagendar cita
+		JButton btnReagendarCita = new JButton("Reagendar cita");
+		btnReagendarCita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				control.reagendarCita();
+			}
+		});
+
+		btnReagendarCita.setBounds(15, 213, 178, 29);
+		contentPane.add(btnReagendarCita);
 	}
-	
+
 	public void muestra(ControlPrincipal control) {
-		
+
 		this.control = control;
-		
+
 		setVisible(true);
 	}
 }

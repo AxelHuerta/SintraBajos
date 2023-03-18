@@ -40,7 +40,7 @@ public class ServicioCita {
     * @param servicio
     * @return
     */
-   public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio) {
+   public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio, Long idUsuario) {
       // Regla de negocio: No se permite agendar dos citas en un mismo horario
 
       Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
@@ -54,6 +54,8 @@ public class ServicioCita {
       }
 
       cita = new Cita();
+      // Corregir
+      // Agregar id usuario cuanto ya este disponible
       cita.setIdUsuario((long) 123);
       cita.setFecha(fecha);
       cita.setHora(hora);
@@ -81,5 +83,37 @@ public class ServicioCita {
       }
 
       return citas.size() == 8 ? true : false;
+   }
+
+   /**
+    * 
+    * Permite Eliminar una cita
+    * 
+    * @param fecha
+    * @param hora
+    * @param idUsuario
+    * @return
+    */
+   public void eliminarCita(LocalDate fecha, LocalTime hora, Long idUsuario) {
+      // Buscar la cita correspondiente
+      Cita cita = citaRepository.findByFechaAndHoraAndIdUsuario(fecha, hora, idUsuario);
+
+      // Si se encontró la cita, eliminarla
+      if (cita != null) {
+         citaRepository.delete(cita);
+      } else {
+         throw new IllegalArgumentException("No se encontró la cita correspondiente");
+      }
+   }
+
+   /**
+    * 
+    * Permite obtener una cita
+    * 
+    * @param idUsuario
+    * @return
+    */
+   public List<Cita> obtenerCitasPorUsuario(Long idUsuario) {
+      return citaRepository.findByIdUsuario(idUsuario);
    }
 }
