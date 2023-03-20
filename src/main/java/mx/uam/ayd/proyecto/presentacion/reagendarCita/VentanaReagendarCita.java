@@ -3,8 +3,6 @@ package mx.uam.ayd.proyecto.presentacion.reagendarCita;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -165,7 +163,7 @@ public class VentanaReagendarCita extends JFrame {
         control.comprobarCitasDia(date);
 
         /// ACTUALIZAR EL PANEL
-        List<Cita> citas = control.ProximasCitas(((long) 123)); // buscar en la base
+        List<Cita> citas = control.ProximasCitas((long) 123); // buscar en la base
                                                                 // de datos
 
         DefaultTableModel model = (DefaultTableModel) proximasCitas.getModel();

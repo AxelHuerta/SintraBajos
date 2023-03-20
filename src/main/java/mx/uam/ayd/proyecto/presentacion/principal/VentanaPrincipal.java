@@ -55,7 +55,7 @@ public class VentanaPrincipal extends JFrame {
 		JButton btnAgregarUsuario = new JButton("Agregar usuario");
 		btnAgregarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// control.agregarUsuario();
+				control.agregarUsuario();
 			}
 		});
 		btnAgregarUsuario.setBounds(15, 33, 178, 29);
@@ -103,6 +103,17 @@ public class VentanaPrincipal extends JFrame {
 
 		btnReagendarCita.setBounds(15, 213, 178, 29);
 		contentPane.add(btnReagendarCita);
+
+		// btn reagendar cita
+		JButton btnListarUsuario = new JButton("Listar usuarios");
+		btnListarUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				control.listarUsuarios();
+			}
+		});
+
+		btnListarUsuario.setBounds(15, 243, 178, 29);
+		contentPane.add(btnListarUsuario);
 	}
 
 	public void muestra(ControlPrincipal control) {

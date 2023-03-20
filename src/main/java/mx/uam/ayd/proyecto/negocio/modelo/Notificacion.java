@@ -17,7 +17,7 @@ public class Notificacion {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(name = "idUsuario")
-  private long idUsuario;
+  private Long idUsuario;
   @Column(name = "message")
   private String message;
 }

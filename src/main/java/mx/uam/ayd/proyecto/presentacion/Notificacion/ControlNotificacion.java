@@ -36,7 +36,7 @@ public class ControlNotificacion {
   public void deleteNotificacion(Long idUsuario) {
     try {
       ventana.muestraDialogoConMensaje("Notificaciones borradas");
-      servicioNotificacion.deleteNotificacion(0);
+      servicioNotificacion.deleteNotificacion(idUsuario);
     } catch (Exception ex) {
       ventana.muestraDialogoConMensaje("No fue posible borrar las notificaciones" + ex.getMessage());
     }

@@ -69,7 +69,8 @@ public class VentanaNotificacion extends JFrame {
         for (int i = 0; i < lista.size(); i++) {
           lista.get(i).setText(null);
         }
-        control.deleteNotificacion((long) 0);
+        // Cambiar el id
+        control.deleteNotificacion((long) 123); // Cambiar el id
       }
     });
   }

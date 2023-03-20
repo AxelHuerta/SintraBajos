@@ -54,8 +54,9 @@ public class ServicioCita {
       }
 
       cita = new Cita();
-      // Corregir
-      // Agregar id usuario cuanto ya este disponible
+      ///////////////////////////////////////////////
+      // falta conectar con el id del usaurio
+      ///////////////////////////////////////////////
       cita.setIdUsuario((long) 123);
       cita.setFecha(fecha);
       cita.setHora(hora);

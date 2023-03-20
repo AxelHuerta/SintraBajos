@@ -123,9 +123,11 @@ public class VentanaAgendarCita extends JFrame {
 				// establecer formato de la hora
 				DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
 
-				// Corregir
+				/////////////////////////////////
+				// Corregir id usuario
 				// Agregar el idUsuario real
-				Long idUsuario = (long) 1234;
+				/////////////////////////////////
+				Long idUsuario = (long) 123;
 
 				// agregar la cita
 				control.agregarCita(date, LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora),
@@ -136,19 +138,7 @@ public class VentanaAgendarCita extends JFrame {
 
 		btnRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// tomar la fecha del calendario
-				LocalDate date = calendar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-				// establecer formato de la hora
-				DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
-
-				// Corregir
-				// Agregar el idUsuario real
-				Long idUsuario = (long) 1234;
-
-				// agregar la cita
-				control.agregarCita(date, LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora),
-						(String) comboBoxServicios.getSelectedItem(), idUsuario);
-				control.comprobarCitasDia(date);
+				setVisible(false);
 			}
 		});
 	}

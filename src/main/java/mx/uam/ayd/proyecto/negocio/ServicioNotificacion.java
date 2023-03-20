@@ -14,7 +14,7 @@ public class ServicioNotificacion {
   @Autowired
   private NotificacionRepository notificacionRepository;
 
-  public Notificacion addNotificacion(String message, long idUsuario) {
+  public Notificacion addNotificacion(String message, Long idUsuario) {
     Notificacion notificacion = notificacionRepository.findByIdUsuario(idUsuario);
 
     notificacion = new Notificacion();
@@ -26,9 +26,13 @@ public class ServicioNotificacion {
     return notificacion;
   }
 
-  public Notificacion deleteNotificacion(long idUsuario) {
-    Notificacion notificacion = notificacionRepository.deleteAllById(idUsuario);
-    return notificacion;
+  //////////////////////////////////////////////
+  // Cambie este método de Notificacion a void
+  //////////////////////////////////////////////
+  public void deleteNotificacion(Long idUsuario) {
+    notificacionRepository.deleteAllById(idUsuario);
+    // Notificacion notificacion = notificacionRepository.deleteAllById(idUsuario);
+    // return notificacion;
   }
 
   public List<Notificacion> recuperaNotificacion() {
