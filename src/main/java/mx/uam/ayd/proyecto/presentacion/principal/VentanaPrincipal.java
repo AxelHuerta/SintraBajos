@@ -61,60 +61,6 @@ public class VentanaPrincipal extends JFrame {
 		btnAgregarUsuario.setBounds(15, 73, 178, 29);
 		contentPane.add(btnAgregarUsuario);
 
-		// JButton btnListarUsuarios = new JButton("Listar usuarios");
-		// btnListarUsuarios.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent e) {
-		// // control.listarUsuarios();
-		// }
-		// });
-
-		// btnListarUsuarios.setBounds(15, 88, 178, 29);
-		// contentPane.add(btnListarUsuarios);
-
-		// btn citas
-		JButton btnAgendarCita = new JButton("Agendar cita");
-		btnAgendarCita.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				control.agendarCitas();
-			}
-		});
-
-		btnAgendarCita.setBounds(15, 148, 178, 29);
-		contentPane.add(btnAgendarCita);
-
-		// btn notificaciones
-		JButton btnNotificacion = new JButton("Notificaciones");
-		btnNotificacion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				control.verNitificaciones();
-			}
-		});
-
-		btnNotificacion.setBounds(15, 183, 178, 29);
-		contentPane.add(btnNotificacion);
-
-		// btn reagendar cita
-		JButton btnReagendarCita = new JButton("Reagendar cita");
-		btnReagendarCita.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				control.reagendarCita();
-			}
-		});
-
-		btnReagendarCita.setBounds(15, 213, 178, 29);
-		contentPane.add(btnReagendarCita);
-
-		// btn reagendar cita
-		// JButton btnListarUsuario = new JButton("Listar usuarios");
-		// btnListarUsuario.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent e) {
-		// control.listarUsuarios();
-		// }
-		// });
-
-		// btnListarUsuario.setBounds(15, 243, 178, 29);
-		// contentPane.add(btnListarUsuario);
-
 		// btn ventana administrador
 		JButton btnVentanaAdmin = new JButton("GUI Administrador");
 		btnVentanaAdmin.addActionListener(new ActionListener() {

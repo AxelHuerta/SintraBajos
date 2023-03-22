@@ -47,7 +47,7 @@ public class ControlPrincipal {
   private ventanaAdmin ventanaAdmin;
 
   @Autowired
-  private VentanaPaciente ventanaPaciente;
+  private ventanaPaciente ventanaPaciente;
 
   /**
    * Inicia el flujo de control de la ventana principal
