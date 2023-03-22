@@ -43,6 +43,12 @@ public class ControlPrincipal {
   @Autowired
   private VentanaPrincipal ventana;
 
+  @Autowired
+  private ventanaAdmin ventanaAdmin;
+
+  @Autowired
+  private VentanaPaciente ventanaPaciente;
+
   /**
    * Inicia el flujo de control de la ventana principal
    * 
@@ -83,20 +89,28 @@ public class ControlPrincipal {
     controlAgregarUsuario.inicia();
   }
 
+  public void abrirVentanaAdmin() {
+    ventanaAdmin.muestra(this);
+  }
+
+  public void abrirVentanaUser() {
+    ventanaPaciente.muestra(this);
+  }
+
   /////////////////////////////////////////////////////////////
   // Los metodos a continuaciob deben de estar en su control
   /////////////////////////////////////////////////////////////
   // public List<Usuario> obtenPacientes() {
-  //   List<Usuario> pacientes;
-  //   pacientes = controlListarUsuarios.obtenPacientes();
-  //   return pacientes;
+  // List<Usuario> pacientes;
+  // pacientes = controlListarUsuarios.obtenPacientes();
+  // return pacientes;
   // }
 
   // // Metodo para obtener al paciente
   // public void recuperaUsuario(Usuario paciente) {
-  //   ventanaLista.termina();
-  //   controlListarUsuarios.pacienteActual(paciente);
-  //   // Aqui debes mostrar la nueva Ventana.
+  // ventanaLista.termina();
+  // controlListarUsuarios.pacienteActual(paciente);
+  // // Aqui debes mostrar la nueva Ventana.
   // }
 
   public void listarUsuarios() {

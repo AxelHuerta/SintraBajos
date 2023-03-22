@@ -58,18 +58,18 @@ public class VentanaPrincipal extends JFrame {
 				control.agregarUsuario();
 			}
 		});
-		btnAgregarUsuario.setBounds(15, 33, 178, 29);
+		btnAgregarUsuario.setBounds(15, 73, 178, 29);
 		contentPane.add(btnAgregarUsuario);
 
-		JButton btnListarUsuarios = new JButton("Listar usuarios");
-		btnListarUsuarios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// control.listarUsuarios();
-			}
-		});
+		// JButton btnListarUsuarios = new JButton("Listar usuarios");
+		// btnListarUsuarios.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// // control.listarUsuarios();
+		// }
+		// });
 
-		btnListarUsuarios.setBounds(15, 88, 178, 29);
-		contentPane.add(btnListarUsuarios);
+		// btnListarUsuarios.setBounds(15, 88, 178, 29);
+		// contentPane.add(btnListarUsuarios);
 
 		// btn citas
 		JButton btnAgendarCita = new JButton("Agendar cita");
@@ -105,15 +105,37 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.add(btnReagendarCita);
 
 		// btn reagendar cita
-		JButton btnListarUsuario = new JButton("Listar usuarios");
-		btnListarUsuario.addActionListener(new ActionListener() {
+		// JButton btnListarUsuario = new JButton("Listar usuarios");
+		// btnListarUsuario.addActionListener(new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// control.listarUsuarios();
+		// }
+		// });
+
+		// btnListarUsuario.setBounds(15, 243, 178, 29);
+		// contentPane.add(btnListarUsuario);
+
+		// btn ventana administrador
+		JButton btnVentanaAdmin = new JButton("GUI Administrador");
+		btnVentanaAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				control.listarUsuarios();
+				control.abrirVentanaAdmin();
 			}
 		});
 
-		btnListarUsuario.setBounds(15, 243, 178, 29);
-		contentPane.add(btnListarUsuario);
+		btnVentanaAdmin.setBounds(15, 33, 178, 29);
+		contentPane.add(btnVentanaAdmin);
+
+		// btn ventana administrador
+		JButton btnVentanaUser = new JButton("GUI Usuario");
+		btnVentanaUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				control.abrirVentanaUser();
+			}
+		});
+
+		btnVentanaUser.setBounds(15, 103, 178, 29);
+		contentPane.add(btnVentanaUser);
 	}
 
 	public void muestra(ControlPrincipal control) {
