@@ -1,6 +1,4 @@
-package mx.uam.ayd.proyecto.presentacion.principal;
-
-import java.awt.EventQueue;
+package mx.uam.ayd.proyecto.presentacion.menuUsuario;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,15 +20,15 @@ import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 @Component
-public class ventanaPaciente extends JFrame {
+public class VentanaUsuario extends JFrame {
 
 	private JPanel contentPane;
-	private ControlPrincipal control;
+	private ControlUsuario control;
 
 	/**
 	 * Create the frame.
 	 */
-	public ventanaPaciente() {
+	public VentanaUsuario() {
 		setTitle("Ventana Paciente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 500);
@@ -75,7 +73,7 @@ public class ventanaPaciente extends JFrame {
 		panelCitas.add(etiquetaACitas);
 
 		JLabel etiquetaImg1 = new JLabel("");
-		etiquetaImg1.setIcon(new ImageIcon(ventanaPaciente.class.getResource("/img/p1.png")));
+		etiquetaImg1.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/img/p1.png")));
 		etiquetaImg1.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaImg1.setBounds(11, 29, 138, 84);
 		panelCitas.add(etiquetaImg1);
@@ -106,7 +104,7 @@ public class ventanaPaciente extends JFrame {
 		panelCitas_1.add(lblNotificaciones);
 
 		JLabel etiquetaImg1_1 = new JLabel("");
-		etiquetaImg1_1.setIcon(new ImageIcon(ventanaPaciente.class.getResource("/img/p2.png")));
+		etiquetaImg1_1.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/img/p2.png")));
 		etiquetaImg1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaImg1_1.setBounds(22, 24, 144, 99);
 		panelCitas_1.add(etiquetaImg1_1);
@@ -136,7 +134,7 @@ public class ventanaPaciente extends JFrame {
 		panelCitas_2.add(lblActualizarDatos);
 
 		JLabel etiquetaImg1_2 = new JLabel("");
-		etiquetaImg1_2.setIcon(new ImageIcon(ventanaPaciente.class.getResource("/img/p3.png")));
+		etiquetaImg1_2.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/img/p3.png")));
 		etiquetaImg1_2.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaImg1_2.setBounds(10, 22, 144, 99);
 		panelCitas_2.add(etiquetaImg1_2);
@@ -166,7 +164,7 @@ public class ventanaPaciente extends JFrame {
 		panelCitas_1_1.add(lblPrecios);
 
 		JLabel etiquetaImg1_1_1 = new JLabel("");
-		etiquetaImg1_1_1.setIcon(new ImageIcon(ventanaPaciente.class.getResource("/img/p4.png")));
+		etiquetaImg1_1_1.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/img/p4.png")));
 		etiquetaImg1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaImg1_1_1.setBounds(22, 24, 144, 99);
 		panelCitas_1_1.add(etiquetaImg1_1_1);
@@ -196,7 +194,7 @@ public class ventanaPaciente extends JFrame {
 		panelCitas_1_2.add(lblConsultarInformacion);
 
 		JLabel etiquetaImg1_1_2 = new JLabel("");
-		etiquetaImg1_1_2.setIcon(new ImageIcon(ventanaPaciente.class.getResource("/img/p5.png")));
+		etiquetaImg1_1_2.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/img/p5.png")));
 		etiquetaImg1_1_2.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaImg1_1_2.setBounds(22, 24, 144, 99);
 		panelCitas_1_2.add(etiquetaImg1_1_2);
@@ -227,14 +225,14 @@ public class ventanaPaciente extends JFrame {
 		panelCitas_3.add(lblReagendarCitas);
 
 		JLabel etiquetaImg1_3 = new JLabel("");
-		etiquetaImg1_3.setIcon(new ImageIcon(ventanaPaciente.class.getResource("/img/p6.png")));
+		etiquetaImg1_3.setIcon(new ImageIcon(VentanaUsuario.class.getResource("/img/p6.png")));
 		etiquetaImg1_3.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaImg1_3.setBounds(11, 29, 138, 84);
 		panelCitas_3.add(etiquetaImg1_3);
 	}
 
-	public void muestra(ControlPrincipal Control) {
-		this.control = Control;
+	public void muestra(ControlUsuario control) {
+		this.control = control;
 		setVisible(true);
 	}
 }

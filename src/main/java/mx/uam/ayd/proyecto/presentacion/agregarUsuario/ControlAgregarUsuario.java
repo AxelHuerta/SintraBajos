@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.ServicioUsuario;
+import mx.uam.ayd.proyecto.presentacion.menuUsuario.ControlUsuario;
 
 /**
  * 
@@ -19,6 +20,9 @@ public class ControlAgregarUsuario {
 
   @Autowired
   private ServicioUsuario servicioUsuario;
+
+  @Autowired
+  private ControlUsuario controlUsuario;
 
   @Autowired
   private VentanaAgregarUsuario ventana;
@@ -40,9 +44,9 @@ public class ControlAgregarUsuario {
       servicioUsuario.agregaUsuario(nombre, apellidoPaterno, apellidoMaterno, Sexo, fechaNa, Domicilio, Telefono,
           Correo, Pass);
       ventana.muestraDialogoConMensaje("Usuario agregado exitosamente");
-      termina();
+      // termina();
     } catch (Exception ex) {
-      // ventana.muestraDialogoConMensaje("Ocurrio un error: ");
+      ventana.muestraDialogoConMensaje("Ocurrio un error: ");
       // System.out.println("Ocurrio un error");
     }
 
@@ -51,6 +55,10 @@ public class ControlAgregarUsuario {
   public void validar(String Correo, String Password) { // Este controlador ya retorna un Usuario desde el servicio si
                                                         // esta registrado
     servicioUsuario.ValidarUsuario(Correo, Password);
+  }
+
+  public void irAlMenu() {
+    controlUsuario.inicia();
   }
 
   /**

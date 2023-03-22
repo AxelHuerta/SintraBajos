@@ -1,13 +1,10 @@
 
-package mx.uam.ayd.proyecto.presentacion.principal;
+package mx.uam.ayd.proyecto.presentacion.menuAdmin;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -24,7 +21,7 @@ import java.awt.event.MouseEvent;
 public class ventanaAdmin extends JFrame {
 
   private JPanel contentPane;
-  private ControlPrincipal control;
+  private ControlAdmin control;
 
   /**
    * Create the frame.
@@ -178,8 +175,8 @@ public class ventanaAdmin extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// Con esto cerramos la ventana
   }
 
-  public void muestra(ControlPrincipal Control) {
-    this.control = Control;
+  public void muestra(ControlAdmin control) {
+    this.control = control;
     setVisible(true);
   }
 

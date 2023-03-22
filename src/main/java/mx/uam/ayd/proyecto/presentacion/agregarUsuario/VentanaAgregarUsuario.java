@@ -376,6 +376,8 @@ public class VentanaAgregarUsuario extends JFrame {
               TCalendario.getDate(), TDom.getText(), Long.valueOf(TTel.getText()), TCorreo.getText(),
               String.valueOf(TPass.getPassword()));
 
+              // acceder al menu
+              control.irAlMenu();
         }
       }
     });
