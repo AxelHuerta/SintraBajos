@@ -29,18 +29,18 @@ public class VentanaNotificacion extends JFrame {
 
   // main
 
-  public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          VentanaNotificacion frame = new VentanaNotificacion();
-          frame.setVisible(true);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
-  }
+  // public static void main(String[] args) {
+  //   EventQueue.invokeLater(new Runnable() {
+  //     public void run() {
+  //       try {
+  //         VentanaNotificacion frame = new VentanaNotificacion();
+  //         frame.setVisible(true);
+  //       } catch (Exception e) {
+  //         e.printStackTrace();
+  //       }
+  //     }
+  //   });
+  // }
 
   public VentanaNotificacion() {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,6 +73,13 @@ public class VentanaNotificacion extends JFrame {
           lista.get(i).setText(null);
         }
         control.deleteNotificacion(usuario.getCorreo());
+      }
+    });
+
+    // regresar al menú
+    btnRegresar.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
       }
     });
   }
