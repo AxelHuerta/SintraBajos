@@ -27,7 +27,12 @@ public class ServicioNotificacion {
   }
 
   public void deleteNotificacion(String correo) {
-    notificacionRepository.deleteAllByCorreo(correo);
+    // NOTE: SE AGREGO EL TRY CATCH
+    try {
+      notificacionRepository.deleteAllByCorreo(correo);
+    } catch (Exception e) {
+      System.out.println("Error en el service: " + e);
+    }
   }
 
   // Esto recupera todas las notificaciones, no solo las del usuario

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
+import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
@@ -22,6 +23,9 @@ import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 public class ControlAgendarCita {
    @Autowired
    private ServicioCita servicioCita;
+
+   @Autowired
+   private ServicioNotificacion servicioNotificacion;
 
    @Autowired
    VentanaAgendarCita ventana;
@@ -43,10 +47,19 @@ public class ControlAgendarCita {
    public void agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo) {
       try {
          servicioCita.agregarCita(fecha, hora, servicio, correo);
+         agregarNotificacionCita(fecha, hora, correo);
+         // NOTE: AQUÍ SE LLAMA A LA FUNCION
          ventana.muestraDialogoConMensaje("Cita agregada");
       } catch (Exception e) {
          ventana.muestraDialogoConMensaje("Error al agendar cita: " + e.getMessage());
       }
+   }
+
+   // agregar notificacion de la cita 
+  // NOTE: AQUÍ ESTA LA FUNCION
+   public void agregarNotificacionCita(LocalDate fecha, LocalTime hora, String correo) {
+      String message = "Se agregó tu cita para el " + fecha + " a las " + hora;
+      servicioNotificacion.addNotificacion(message, correo);
    }
 
    // Comprobar citas
