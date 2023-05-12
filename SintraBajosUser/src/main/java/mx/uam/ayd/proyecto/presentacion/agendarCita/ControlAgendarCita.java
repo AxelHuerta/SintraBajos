@@ -48,7 +48,6 @@ public class ControlAgendarCita {
       try {
          servicioCita.agregarCita(fecha, hora, servicio, correo);
          agregarNotificacionCita(fecha, hora, correo);
-         // NOTE: AQUÍ SE LLAMA A LA FUNCION
          ventana.muestraDialogoConMensaje("Cita agregada");
       } catch (Exception e) {
          ventana.muestraDialogoConMensaje("Error al agendar cita: " + e.getMessage());
@@ -56,7 +55,6 @@ public class ControlAgendarCita {
    }
 
    // agregar notificacion de la cita 
-  // NOTE: AQUÍ ESTA LA FUNCION
    public void agregarNotificacionCita(LocalDate fecha, LocalTime hora, String correo) {
       String message = "Se agregó tu cita para el " + fecha + " a las " + hora;
       servicioNotificacion.addNotificacion(message, correo);

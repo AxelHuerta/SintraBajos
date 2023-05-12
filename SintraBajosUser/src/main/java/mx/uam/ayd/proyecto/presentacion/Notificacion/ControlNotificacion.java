@@ -35,17 +35,21 @@ public class ControlNotificacion {
   }
 
   public void deleteNotificacion(String correo) {
+    if(correo == null || correo.isEmpty()) {
+      ventana.muestraDialogoConMensaje("El correo es nulo");
+      return;
+    }
     try {
-      ventana.muestraDialogoConMensaje("Notificaciones borradas");
       servicioNotificacion.deleteNotificacion(correo);
+      ventana.muestraDialogoConMensaje("Notificaciones borradas");
     } catch (Exception ex) {
       ventana.muestraDialogoConMensaje("No fue posible borrar las notificaciones" + ex.getMessage());
     }
   }
 
-  public List<Notificacion> recuperaNotificacion() {
+  public List<Notificacion> recuperaNotificacion(String correo) {
     List<Notificacion> noti = new ArrayList<>();
-    noti = servicioNotificacion.recuperaNotificacion();
+    noti = servicioNotificacion.recuperaNotificacion(correo);
     return noti;
   }
 }

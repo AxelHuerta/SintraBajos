@@ -267,6 +267,8 @@ public class VentanaReagendarCita extends JFrame {
 
     comboBoxServicios.setModel(comboBoxModelS);
 
+    dispose();
+    setUndecorated(true);
     setVisible(true);
 
   }

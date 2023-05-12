@@ -27,7 +27,6 @@ public class ServicioNotificacion {
   }
 
   public void deleteNotificacion(String correo) {
-    // NOTE: SE AGREGO EL TRY CATCH
     try {
       notificacionRepository.deleteAllByCorreo(correo);
     } catch (Exception e) {
@@ -35,11 +34,12 @@ public class ServicioNotificacion {
     }
   }
 
-  // Esto recupera todas las notificaciones, no solo las del usuario
-  public List<Notificacion> recuperaNotificacion() {
+  public List<Notificacion> recuperaNotificacion(String correo) {
     List<Notificacion> noti = new ArrayList<>();
     for (Notificacion notifi : notificacionRepository.findAll()) {
-      noti.add(notifi);
+      if (notifi.getCorreo().equals(correo)) {
+        noti.add(notifi);
+      }
     }
     return noti;
   }

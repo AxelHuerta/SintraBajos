@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
+import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
@@ -25,6 +26,9 @@ public class ControlReagendarCita {
 
   @Autowired
   VentanaReagendarCita ventana;
+
+  @Autowired
+  ServicioNotificacion servicioNotificacion;
 
   /**
    * Inicia la historia de usuario
@@ -46,11 +50,20 @@ public class ControlReagendarCita {
         return;
       }
       servicioCita.agregarCita(fecha, hora, servicio, correo);
+      agregarNotificacionCita(fecha, hora, correo);
       ventana.muestraDialogoConMensaje("Cita agregada");
     } catch (Exception e) {
       ventana.muestraDialogoConMensaje("Error al agendar cita: " + e.getMessage());
     }
   }
+
+  // agregar notificacion de la cita 
+  public void agregarNotificacionCita(LocalDate fecha, LocalTime hora, String correo) {
+    String message = "Se agregó tu cita para el " + fecha + " a las " + hora;
+    servicioNotificacion.addNotificacion(message, correo);
+  }
+
+
 
   // Comprobar citas
   public void comprobarCitasDia(LocalDate fecha) {
@@ -76,9 +89,15 @@ public class ControlReagendarCita {
   public void eliminarCita(LocalDate fecha, LocalTime hora, String correo) {
     try {
       servicioCita.eliminarCita(fecha, hora, correo);
+      agregarNotificacionEliminacionCita(fecha, hora, correo);
     } catch (Exception e) {
       ventana.muestraDialogoConMensaje("Error al Eliminar Cita " + e.getMessage());
     }
+  }
+  // agregar notificacion de la cita 
+  public void agregarNotificacionEliminacionCita(LocalDate fecha, LocalTime hora, String correo) {
+    String message = "Se elimino tu cita para el " + fecha + " a las " + hora;
+    servicioNotificacion.addNotificacion(message, correo);
   }
 
   /**

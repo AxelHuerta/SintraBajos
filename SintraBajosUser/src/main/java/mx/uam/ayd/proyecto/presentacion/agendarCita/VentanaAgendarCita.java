@@ -142,12 +142,6 @@ public class VentanaAgendarCita extends JFrame {
 	public void muestra(ControlAgendarCita control, Usuario usuario) {
 		this.control = control;
 		this.usuario = usuario;
-
-		// muestra las citas en terminal
-		for (int i = 0; i < control.listarCitas().size() - 1; i++) {
-			System.out.println(control.listarCitas().get(i));
-		}
-
 		DefaultComboBoxModel<String> comboBoxModelH = new DefaultComboBoxModel<>();
 		DefaultComboBoxModel<String> comboBoxModelS = new DefaultComboBoxModel<>();
 		DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
@@ -179,6 +173,8 @@ public class VentanaAgendarCita extends JFrame {
 
 		comboBoxServicios.setModel(comboBoxModelS);
 
+		dispose();
+		setUndecorated(true);
 		setVisible(true);
 	}
 

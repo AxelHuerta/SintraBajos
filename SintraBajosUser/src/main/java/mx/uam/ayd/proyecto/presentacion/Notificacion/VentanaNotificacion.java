@@ -87,12 +87,15 @@ public class VentanaNotificacion extends JFrame {
   public void muestra(ControlNotificacion control, Usuario usuario) {
     this.control = control;
     this.usuario = usuario;
-    for (int i = 0; i < control.recuperaNotificacion().size(); i++) {
-      lista.add(new JLabel(control.recuperaNotificacion().get(i).getMessage()));
+    // Add user to recuperaNotificacion
+    for (int i = 0; i < control.recuperaNotificacion(usuario.getCorreo()).size(); i++) {
+      lista.add(new JLabel(control.recuperaNotificacion(usuario.getCorreo()).get(i).getMessage()));
       lista.get(i).setBounds(20, 30 + (20 * (i)), 342, 21);
       contentPane.add(lista.get(i));
     }
 
+    dispose();
+		setUndecorated(true);
     setVisible(true);
   }
 
