@@ -43,5 +43,7 @@ public class Usuario {
 	private String correo;
 	@Column(name = "Password") 
 	private String pass;
+	@Column(name = "Diagnostico") 
+	private String Diagnostico;
 	
 }
