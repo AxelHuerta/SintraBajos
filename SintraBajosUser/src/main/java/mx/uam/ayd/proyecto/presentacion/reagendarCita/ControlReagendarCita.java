@@ -44,12 +44,19 @@ public class ControlReagendarCita {
   }
 
   // agregar citas
-  public void agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo) {
+  public void agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo,String nombre) {
     try {
+  	LocalDate fechaActual = LocalDate.now();
+
       if (fecha == null) {
         return;
       }
-      servicioCita.agregarCita(fecha, hora, servicio, correo);
+      if (fecha.isBefore(fechaActual)) {
+          ventana.muestraDialogoConMensaje("Seleccione una fecha valida");
+          return;
+      }
+
+      servicioCita.agregarCita(fecha, hora, servicio, correo,nombre);
       agregarNotificacionCita(fecha, hora, correo);
       ventana.muestraDialogoConMensaje("Cita agregada");
     } catch (Exception e) {
