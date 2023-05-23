@@ -125,7 +125,7 @@ public class VentanaAgendarCita extends JFrame {
 
 				// agregar la cita
 				control.agregarCita(date, LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora),
-						(String) comboBoxServicios.getSelectedItem(), usuario.getCorreo());
+						(String) comboBoxServicios.getSelectedItem(), usuario.getCorreo(),usuario.getNombre());
 				control.comprobarCitasDia(date);
 			}
 		});
