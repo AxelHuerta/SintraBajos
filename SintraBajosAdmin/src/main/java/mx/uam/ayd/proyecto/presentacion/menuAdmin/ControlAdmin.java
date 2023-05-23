@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;
+import mx.uam.ayd.proyecto.presentacion.verCitas.ControlVerCitas;
 
 /*import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;*/
 
@@ -14,6 +15,8 @@ public class ControlAdmin {
 
   @Autowired
   private ControlListarUsuarios controlListarUsuarios;
+  @Autowired
+  private ControlVerCitas controlVerCitas;
 
   public void inicia() {
     ventana.muestra(this);
@@ -22,4 +25,7 @@ public class ControlAdmin {
   public void listarUsuarios() {
     controlListarUsuarios.inicia();
   }
+  public void listarCitas() {
+	    controlVerCitas.inicia();
+	  }
 }
