@@ -23,8 +23,8 @@ public class ControlUsuario {
    @Autowired
    private ControlReagendarCita controlReagendarCita;
    
-   /*@Autowired
-   private ControlPrecios controlPrecios;*/
+   @Autowired
+   private ControlPrecios controlPrecios;
    
    
 
@@ -32,9 +32,9 @@ public class ControlUsuario {
       ventana.muestra(this, usuario);
    }
    
-  /* public void precios() {
+   public void precios() {
 	   controlPrecios.inicia();
-   }*/
+   }
 
    /**
     * Método que arranca la historia de usuario "agendar citas"
