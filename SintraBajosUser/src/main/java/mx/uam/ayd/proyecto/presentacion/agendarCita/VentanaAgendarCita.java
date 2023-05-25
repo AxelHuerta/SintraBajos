@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Component;
 
 import com.toedter.calendar.JCalendar;
 
+import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 @Component
@@ -158,18 +160,22 @@ public class VentanaAgendarCita extends JFrame {
 		comboBoxHoras.setModel(comboBoxModelH);
 
 		// valores de los servicios
-		String[] servicios = new String[7];
+		/*String[] servicios = new String[7];
 		servicios[0] = "Revisión general";
 		servicios[1] = "Extracción de muelas";
 		servicios[2] = "Colocación de amalgama";
 		servicios[3] = "Limpieza";
 		servicios[4] = "Blanqueamiento";
 		servicios[5] = "Extracción de terceros molares inferiores";
-		servicios[6] = "Extracción de terceros molares superiores";
-
-		for (String servicio : servicios) {
+		servicios[6] = "Extracción de terceros molares superiores";*/
+		
+		List<Precios> listaImprimir = control.listaPrecios();
+		for (Precios Servicio : listaImprimir) {
+			comboBoxModelS.addElement(Servicio.getServicio()); 
+		    }
+		/*for (String servicio : servicios) {
 			comboBoxModelS.addElement(servicio);
-		}
+		}*/
 
 		comboBoxServicios.setModel(comboBoxModelS);
 
