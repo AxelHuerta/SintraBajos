@@ -20,14 +20,14 @@ import lombok.Data;
  */
 @Entity
 @Data
-@Table(name="citas")
+@Table(name = "Citas")
 public class Cita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "correo")
-    private String idUsuario;
+    private String correo;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "fecha")

@@ -15,6 +15,7 @@ public class ControlAdmin {
 
   @Autowired
   private ControlListarUsuarios controlListarUsuarios;
+
   @Autowired
   private ControlVerCitas controlVerCitas;
 
@@ -25,7 +26,8 @@ public class ControlAdmin {
   public void listarUsuarios() {
     controlListarUsuarios.inicia();
   }
+
   public void listarCitas() {
-	    controlVerCitas.inicia();
-	  }
+    controlVerCitas.inicia();
+  }
 }

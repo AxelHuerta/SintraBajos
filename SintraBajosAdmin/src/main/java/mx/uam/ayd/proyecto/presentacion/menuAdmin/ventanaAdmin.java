@@ -87,9 +87,9 @@ public class ventanaAdmin extends JFrame {
     JLabel EtiquetaCCitas = new JLabel("Consultar Citas.");
     EtiquetaCCitas.addMouseListener(new MouseAdapter() {
       @Override
-      public void mouseClicked(MouseEvent arg0) {
-          control.listarCitas(); //Se muuestra la HU-06
-       }
+      public void mouseClicked(MouseEvent e) {
+        control.listarCitas();
+      }
 
       @Override
       public void mouseEntered(MouseEvent e) {
