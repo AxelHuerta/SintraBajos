@@ -38,7 +38,6 @@ import java.util.List;
 
 @Component
 public class VentanaVerCitas extends JFrame implements MouseListener {
-
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ControlVerCitas control;
@@ -130,7 +129,6 @@ public class VentanaVerCitas extends JFrame implements MouseListener {
 		    public void actualizarTabla(List<Cita> citas) {
 			    // Obtener el modelo de la tabla
 			    DefaultTableModel modelo = (DefaultTableModel) proximasCitas.getModel();
-				// TODO: this is new
 			    
 			    // Eliminar todas las filas existentes
 			    modelo.setRowCount(0);

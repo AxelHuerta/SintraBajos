@@ -88,7 +88,6 @@ public class ventanaAdmin extends JFrame {
     EtiquetaCCitas.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
-        // JOptionPane.showMessageDialog(null, "Se dio clic en Consultar Citas.");
         control.listarCitas();
       }
 

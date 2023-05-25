@@ -28,6 +28,8 @@ public class Cita {
 
     @Column(name = "correo")
     private String correo;
+    @Column(name = "nombre")
+    private String nombre;
     @Column(name = "fecha")
     private LocalDate fecha;
     @Column(name = "hora")

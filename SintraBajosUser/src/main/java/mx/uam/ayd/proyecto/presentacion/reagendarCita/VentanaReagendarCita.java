@@ -160,7 +160,7 @@ public class VentanaReagendarCita extends JFrame {
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
 
         control.agregarCita(date, LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora),
-            (String) comboBoxServicios.getSelectedItem(), usuario.getCorreo());
+            (String) comboBoxServicios.getSelectedItem(), usuario.getCorreo(),usuario.getNombre());
         control.comprobarCitasDia(date);
 
         /// ACTUALIZAR EL PANEL
