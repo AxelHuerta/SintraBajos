@@ -152,7 +152,8 @@ public class VentanaUsuario extends JFrame {
 		lblPrecios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Se dio clic en Precios.");
+				//JOptionPane.showMessageDialog(null, "Se dio clic en Precios.");
+				control.precios();
 			}
 
 			@Override

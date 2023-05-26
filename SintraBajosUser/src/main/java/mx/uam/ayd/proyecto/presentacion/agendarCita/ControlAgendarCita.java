@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
 import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
+import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
+import mx.uam.ayd.proyecto.presentacion.precios.ControlPrecios;
 
 /**
  * 
@@ -27,6 +29,10 @@ public class ControlAgendarCita {
    @Autowired
    private ServicioNotificacion servicioNotificacion;
 
+
+   @Autowired
+   private ControlPrecios Controlprecios;
+   
    @Autowired
    VentanaAgendarCita ventana;
 
@@ -83,4 +89,8 @@ public class ControlAgendarCita {
       // ventana.setVisible(false);
       ventana.dispose();
    }
+
+public List<Precios> listaPrecios() {
+	return Controlprecios.listaPrecios();
+}
 }

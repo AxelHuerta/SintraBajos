@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
 import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
+import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
+import mx.uam.ayd.proyecto.presentacion.precios.ControlPrecios;
 
 /**
  * 
@@ -24,6 +26,9 @@ public class ControlReagendarCita {
   @Autowired
   private ServicioCita servicioCita;
 
+  @Autowired
+  private ControlPrecios controlPrecios;
+  
   @Autowired
   VentanaReagendarCita ventana;
 
@@ -106,6 +111,10 @@ public class ControlReagendarCita {
     String message = "Se elimino tu cita para el " + fecha + " a las " + hora;
     servicioNotificacion.addNotificacion(message, correo);
   }
+  
+  public List<Precios> listaPrecios() {
+		return controlPrecios.listaPrecios();
+	}
 
   /**
    * Termina la historia de usuario
