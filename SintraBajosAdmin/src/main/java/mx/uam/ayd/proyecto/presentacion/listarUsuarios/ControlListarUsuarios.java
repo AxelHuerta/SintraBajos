@@ -1,13 +1,11 @@
 package mx.uam.ayd.proyecto.presentacion.listarUsuarios;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.ServicioUsuario;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
@@ -22,8 +20,15 @@ public class ControlListarUsuarios {
   @Autowired
   private ventanaListaUsuarios ventana2;
 
+  @Autowired
+  private ventanaEditar ventanaE;
+
   public void inicia() {
     ventana2.muestra(this);
+  }
+
+  public void iniciaE(Usuario usuario) {
+    ventanaE.muestraE(this, usuario);
   }
 
   public void iniciaUsuarios() {
@@ -41,11 +46,13 @@ public class ControlListarUsuarios {
     List<Usuario> pacientes = servicioUsuario.recuperaUsuarios();
     return pacientes;
   }
+
   //Metodo usado para obtener al paciente seleccionado
   public void pacienteActual(Usuario usuario) {
     ventana.muestra(this, usuario); // Muestra la ventana y muestra al paciente obtenido
   }
-// Se obtiene el nuevo usuario
+
+  // Se obtiene el nuevo usuario
   public void recuperaNuevo(Usuario usuario) {
     servicioUsuario.nuevo(usuario);
     ventana.muestraMensaje();
@@ -59,9 +66,7 @@ public class ControlListarUsuarios {
   public void recuperaUsuario(Usuario paciente) {
     ventana2.termina();
     pacienteActual(paciente);
-   
   }
-
 
   /*
    *  Termina la historia de usuario

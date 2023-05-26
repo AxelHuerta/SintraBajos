@@ -183,6 +183,19 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     usuario.setPass(tablaUsuarios.getValueAt(fila, 8).toString());
     usuario.setSexo(tablaUsuarios.getValueAt(fila, 9).toString());
     usuario.setTelefono((long) tablaUsuarios.getValueAt(fila, 10));
+
+    System.out.println(usuario.getNombre());
+    System.out.println(usuario.getApellido());
+    System.out.println(usuario.getApellidomaterno());
+    System.out.println(usuario.getCorreo());
+    System.out.println(usuario.getDomicilio());
+    System.out.println(usuario.getDiagnostico());
+    System.out.println(usuario.getFechaNa());
+    System.out.println(usuario.getSexo());
+    System.out.println(usuario.getIdUsuario());
+    System.out.println(usuario.getPass());
+    System.out.println(usuario.getTelefono());
+
     return usuario; // Se almacenan los datos del paciente.
   }
 
@@ -197,6 +210,11 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     if (columna == 11) { // Columna 11 referente a la columna de consulta.
       pac = validarSeleccionMouse(fila); // Se obtienen el objeto usuario al cual se le realizara la consulta
       control.recuperaUsuario(pac); // Con este metodo se hace referencia al Usuario en turno
+    }
+    if(columna == 12){
+      pac = validarSeleccionMouse(fila);
+      System.out.println("Seleccionó la fila 12");
+      control.iniciaE(pac);
     }
   }
 
