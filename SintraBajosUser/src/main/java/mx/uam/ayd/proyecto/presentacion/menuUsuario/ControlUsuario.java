@@ -8,6 +8,7 @@ import mx.uam.ayd.proyecto.presentacion.agendarCita.ControlAgendarCita;
 import mx.uam.ayd.proyecto.presentacion.precios.ControlPrecios;
 import mx.uam.ayd.proyecto.presentacion.reagendarCita.ControlReagendarCita;
 import mx.uam.ayd.proyecto.presentacion.Notificacion.ControlNotificacion;
+import mx.uam.ayd.proyecto.presentacion.actualizarDatos.ControlActualizarDatos;
 
 @Component
 public class ControlUsuario {
@@ -25,6 +26,10 @@ public class ControlUsuario {
    
    @Autowired
    private ControlPrecios controlPrecios;
+	
+   @Autowired
+   private ControlActualizarDatos controlActualizarDatos;
+
    
    
 
