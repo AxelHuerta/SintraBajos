@@ -1,144 +1,183 @@
 package mx.uam.ayd.proyecto.presentacion.listarUsuarios;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
-import org.springframework.stereotype.Component;
-
-import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ventanaEditar extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+  private JPanel contentPane;
+  private JTextField textField;
+  private JTextField textField_1;
+  private JTextField textField_2;
+  private JTextField textField_3;
+  private JTextField textField_4;
+  private JTextField textField_5;
 
-    private ControlListarUsuarios controlE;
-    private Usuario usuario;
+  private ControlListarUsuarios controlE;
+  private Usuario usuario;
 
-	public ventanaEditar() {
-		setTitle("Datos del Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 837, 615);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+  public ventanaEditar() {
+    setTitle("Datos del Usuario");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setBounds(100, 100, 790, 551);
+    contentPane = new JPanel();
+    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+    setContentPane(contentPane);
+    contentPane.setLayout(null);
 
-		JLabel lblDatosdelUsuario = new JLabel("Datos del Usuario");
-		lblDatosdelUsuario.setFont(new Font("Calibri", Font.BOLD, 20));
-		lblDatosdelUsuario.setBounds(479, 30, 160, 29);
-		lblDatosdelUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		contentPane.add(lblDatosdelUsuario);
+    JPanel panelLogo = new JPanel();
+		panelLogo.setBounds(0, 0, 173, 104);
+		contentPane.add(panelLogo);
+		panelLogo.setLayout(null);
 		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNombre.setBounds(350, 111, 98, 29);
-		contentPane.add(lblNombre);
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ventanaEditar.class.getResource("/img/Logo3.png")));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(37, 10, 98, 84);
+		panelLogo.add(lblNewLabel_1);
+    
+    JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(172, 0, 604, 104);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Datos del Usuario");
+		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 30));
+		lblNewLabel.setBounds(183, 30, 223, 38);
+		panel.add(lblNewLabel);
+
+    JLabel DUsuario = new JLabel("");
+		DUsuario.setIcon(new ImageIcon(ventanaEditar.class.getResource("/img/Usuario.png")));
+		DUsuario.setBounds(56, 138, 225, 237);
+		contentPane.add(DUsuario);
+		
+		JPanel panelI = new JPanel();
+		panelI.setBackground(Color.LIGHT_GRAY);
+		panelI.setBounds(172, 0, 604, 104);
+		contentPane.add(panelI);
+		panelI.setLayout(null);
+
+    JLabel lblNombre = new JLabel("Nombre:");
+    lblNombre.setFont(new Font("Tahoma", Font.BOLD, 16));
+    lblNombre.setBounds(368, 138, 98, 29);
+    contentPane.add(lblNombre);
 
     textField = new JTextField();
-		textField.setBounds(450, 111, 280, 26);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblApellidoP = new JLabel("Apellido P:");
-		lblApellidoP.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblApellidoP.setBounds(350, 150, 98, 29);
-		contentPane.add(lblApellidoP);
+    textField.setBounds(464, 138, 280, 26);
+    contentPane.add(textField);
+    textField.setColumns(10);
+
+    JLabel lblApellidoP = new JLabel("Apellido P:");
+    lblApellidoP.setFont(new Font("Tahoma", Font.BOLD, 16));
+    lblApellidoP.setBounds(364, 177, 98, 29);
+    contentPane.add(lblApellidoP);
 
     textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(450, 150, 280, 26);
-		contentPane.add(textField_1);
+    textField_1.setColumns(10);
+    textField_1.setBounds(464, 177, 280, 26);
+    contentPane.add(textField_1);
 
     JLabel lblApellido = new JLabel("Apellido M:");
-		lblApellido.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblApellido.setBounds(350, 189, 98, 29);
-		contentPane.add(lblApellido);
+    lblApellido.setFont(new Font("Tahoma", Font.BOLD, 16));
+    lblApellido.setBounds(364, 216, 98, 29);
+    contentPane.add(lblApellido);
 
     textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(450, 189, 280, 26);
-		contentPane.add(textField_2);
-		
-		JLabel lblTelfono = new JLabel("Teléfono:");
-		lblTelfono.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblTelfono.setBounds(350, 228, 98, 29);
-		contentPane.add(lblTelfono);
+    textField_2.setColumns(10);
+    textField_2.setBounds(464, 216, 280, 26);
+    contentPane.add(textField_2);
+
+    JLabel lblTelfono = new JLabel("Teléfono:");
+    lblTelfono.setFont(new Font("Tahoma", Font.BOLD, 16));
+    lblTelfono.setBounds(364, 255, 98, 29);
+    contentPane.add(lblTelfono);
 
     textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(450, 228, 280, 26);
-		contentPane.add(textField_3);
-		
-		JLabel lblCorreo = new JLabel("Correo:");
-		lblCorreo.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblCorreo.setBounds(350, 267, 98, 29);
-		contentPane.add(lblCorreo);
+    textField_3.setColumns(10);
+    textField_3.setBounds(464, 255, 280, 26);
+    contentPane.add(textField_3);
+
+    JLabel lblCorreo = new JLabel("Correo:");
+    lblCorreo.setFont(new Font("Tahoma", Font.BOLD, 16));
+    lblCorreo.setBounds(364, 294, 98, 29);
+    contentPane.add(lblCorreo);
 
     textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(450, 267, 280, 26);
-		contentPane.add(textField_4);
-		
-		JLabel lblDireccin = new JLabel("Dirección:");
-		lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDireccin.setBounds(350, 306, 98, 29);
-		contentPane.add(lblDireccin);
+    textField_4.setColumns(10);
+    textField_4.setBounds(464, 294, 280, 26);
+    contentPane.add(textField_4);
+
+    JLabel lblDireccin = new JLabel("Domicilio:");
+    lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 16));
+    lblDireccin.setBounds(364, 333, 98, 29);
+    contentPane.add(lblDireccin);
 
     textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(450, 298, 280, 50);
-		contentPane.add(textField_5);
-		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se guardo correctamente");
-			}
-		});
-		btnGuardar.setFont(new Font("Arial", Font.BOLD, 15));
-		btnGuardar.setBounds(601, 444, 143, 38);
-		contentPane.add(btnGuardar);
-		
-	}
-	
-    public void muestraE(ControlListarUsuarios control, Usuario usuario) {
-        this.controlE = control;
-        this.usuario = usuario;
+    textField_5.setColumns(10);
+    textField_5.setBounds(464, 325, 280, 50);
+    contentPane.add(textField_5);
 
-        textField.setText(usuario.getNombre());
-        textField_1.setText(usuario.getApellido());
-        textField_2.setText(usuario.getApellidomaterno());
-        textField_3.setText(String.valueOf(usuario.getTelefono()));
-        textField_4.setText(usuario.getCorreo());
-        textField_5.setText(usuario.getDomicilio());
-        setVisible(true);
-    }
+    JButton btnActualizar = new JButton("Guardar");
 
-    public void cierra() { 
-        setVisible(false);
-    }
+    btnActualizar.addMouseListener(new MouseAdapter() {
+      @Override
+
+      public void mouseClicked(MouseEvent e) {
+        usuario.setNombre(textField.getText());
+        usuario.setApellido(textField_1.getText());
+        usuario.setApellidomaterno(textField_2.getText());
+        usuario.setTelefono(Long.parseLong(textField_3.getText()));
+        usuario.setCorreo(textField_4.getText());
+        usuario.setDomicilio(textField_5.getText());
+        controlE.recuperaNuevo(usuario);
+      }
+    });
     
-    public void muestraMensaje() {
-        JOptionPane.showMessageDialog(null, "La informacion fue actualizada correctamente.");
-        cierra();
-    }
+    btnActualizar.setFont(new Font("Arial", Font.BOLD, 15));
+    btnActualizar.setBounds(601, 444, 143, 38);
+    contentPane.add(btnActualizar);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  }
+
+  public void muestraE(ControlListarUsuarios control, Usuario usuario) {
+    this.controlE = control;
+    this.usuario = usuario;
+
+    textField.setText(usuario.getNombre());
+    textField_1.setText(usuario.getApellido());
+    textField_2.setText(usuario.getApellidomaterno());
+    textField_3.setText(String.valueOf(usuario.getTelefono()));
+    textField_4.setText(usuario.getCorreo());
+    textField_5.setText(usuario.getDomicilio());
+    setVisible(true);
+  }
+
+  public void cierra() {
+    setVisible(false);
+  }
+
+  public void muestraMensaje() {
+    JOptionPane.showMessageDialog(null,"La informacion fue actualizada correctamente.");
+    cierra();
+  }
 }
