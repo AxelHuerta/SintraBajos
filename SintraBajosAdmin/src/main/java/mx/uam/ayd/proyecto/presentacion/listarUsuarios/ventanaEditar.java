@@ -138,6 +138,18 @@ public class ventanaEditar extends JFrame {
     contentPane.add(textField_5);
 
     JButton btnActualizar = new JButton("Guardar");
+    JButton btnRegresar = new JButton("Regresar");
+
+    btnRegresar.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+      }
+    });
+
+    btnRegresar.setFont(new Font("Arial", Font.BOLD, 15));
+    btnRegresar.setBounds(10, 444, 143, 38);
+    contentPane.add(btnRegresar);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     btnActualizar.addMouseListener(new MouseAdapter() {
       @Override
