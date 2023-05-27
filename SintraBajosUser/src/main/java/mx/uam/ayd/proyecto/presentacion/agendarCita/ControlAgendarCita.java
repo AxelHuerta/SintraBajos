@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
 import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
+import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
+import mx.uam.ayd.proyecto.presentacion.precios.ControlPrecios;
 
 /**
  * 
@@ -27,6 +29,10 @@ public class ControlAgendarCita {
    @Autowired
    private ServicioNotificacion servicioNotificacion;
 
+
+   @Autowired
+   private ControlPrecios Controlprecios;
+   
    @Autowired
    VentanaAgendarCita ventana;
 
@@ -44,9 +50,15 @@ public class ControlAgendarCita {
    }
 
    // agregar citas
-   public void agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo) {
+   public void agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo,String nombre) {
       try {
-         servicioCita.agregarCita(fecha, hora, servicio, correo);
+    	  LocalDate fechaActual = LocalDate.now();
+    	  if (fecha.isBefore(fechaActual)) {
+              ventana.muestraDialogoConMensaje("Seleccione una fecha valida");
+              return;
+          }
+
+         servicioCita.agregarCita(fecha, hora, servicio, correo,nombre);
          agregarNotificacionCita(fecha, hora, correo);
          ventana.muestraDialogoConMensaje("Cita agregada");
       } catch (Exception e) {
@@ -77,4 +89,8 @@ public class ControlAgendarCita {
       // ventana.setVisible(false);
       ventana.dispose();
    }
+
+public List<Precios> listaPrecios() {
+	return Controlprecios.listaPrecios();
+}
 }

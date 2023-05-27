@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 import com.toedter.calendar.JDateChooser;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
+import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 @Component
@@ -160,7 +161,7 @@ public class VentanaReagendarCita extends JFrame {
         DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
 
         control.agregarCita(date, LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora),
-            (String) comboBoxServicios.getSelectedItem(), usuario.getCorreo());
+            (String) comboBoxServicios.getSelectedItem(), usuario.getCorreo(),usuario.getNombre());
         control.comprobarCitasDia(date);
 
         /// ACTUALIZAR EL PANEL
@@ -250,7 +251,7 @@ public class VentanaReagendarCita extends JFrame {
 
     comboBoxHoras.setModel(comboBoxModelH);
 
-    String[] servicios = new String[9];
+    /*String[] servicios = new String[9];
     servicios[0] = "Examen Bucodental Inicial";
     servicios[1] = "Procedimientos de obturación";
     servicios[2] = "Extracciones dentales";
@@ -263,7 +264,12 @@ public class VentanaReagendarCita extends JFrame {
 
     for (String servicio : servicios) {
       comboBoxModelS.addElement(servicio);
-    }
+    }*/
+    
+    List<Precios> listaImprimir = control.listaPrecios();
+	for (Precios Servicio : listaImprimir) {
+		comboBoxModelS.addElement(Servicio.getServicio()); 
+	    }
 
     comboBoxServicios.setModel(comboBoxModelS);
 

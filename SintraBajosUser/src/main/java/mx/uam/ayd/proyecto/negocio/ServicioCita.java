@@ -41,7 +41,7 @@ public class ServicioCita {
     * @param servicio
     * @return
     */
-   public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo) {
+   public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo,String nombre) {
       // Regla de negocio: No se permite agendar dos citas en un mismo horario
 
       Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
@@ -57,6 +57,7 @@ public class ServicioCita {
       // registrar datos de la cita
       cita = new Cita();
       cita.setCorreo(correo);
+      cita.setNombre(nombre);
       cita.setFecha(fecha);
       cita.setHora(hora);
       cita.setServicio(servicio);

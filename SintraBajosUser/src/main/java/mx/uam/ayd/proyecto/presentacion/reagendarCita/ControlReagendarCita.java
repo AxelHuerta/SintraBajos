@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
 import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
+import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
+import mx.uam.ayd.proyecto.presentacion.precios.ControlPrecios;
 
 /**
  * 
@@ -24,6 +26,9 @@ public class ControlReagendarCita {
   @Autowired
   private ServicioCita servicioCita;
 
+  @Autowired
+  private ControlPrecios controlPrecios;
+  
   @Autowired
   VentanaReagendarCita ventana;
 
@@ -44,12 +49,19 @@ public class ControlReagendarCita {
   }
 
   // agregar citas
-  public void agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo) {
+  public void agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo,String nombre) {
     try {
+  	LocalDate fechaActual = LocalDate.now();
+
       if (fecha == null) {
         return;
       }
-      servicioCita.agregarCita(fecha, hora, servicio, correo);
+      if (fecha.isBefore(fechaActual)) {
+          ventana.muestraDialogoConMensaje("Seleccione una fecha valida");
+          return;
+      }
+
+      servicioCita.agregarCita(fecha, hora, servicio, correo,nombre);
       agregarNotificacionCita(fecha, hora, correo);
       ventana.muestraDialogoConMensaje("Cita agregada");
     } catch (Exception e) {
@@ -99,6 +111,10 @@ public class ControlReagendarCita {
     String message = "Se elimino tu cita para el " + fecha + " a las " + hora;
     servicioNotificacion.addNotificacion(message, correo);
   }
+  
+  public List<Precios> listaPrecios() {
+		return controlPrecios.listaPrecios();
+	}
 
   /**
    * Termina la historia de usuario

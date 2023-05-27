@@ -56,7 +56,7 @@ public class ServicioUsuario {
 		usuario.setTelefono(Telefono);
 		usuario.setCorreo(Correo);
 		usuario.setPass(Pass);
-		
+		usuario.setDiagnostico("");
 		usuarioRepository.save(usuario);
 		
 		
