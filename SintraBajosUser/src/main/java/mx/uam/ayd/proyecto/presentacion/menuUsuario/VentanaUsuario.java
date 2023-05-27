@@ -122,7 +122,7 @@ public class VentanaUsuario extends JFrame {
 		lblActualizarDatos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Se dio clic en Actualizar Datos.");
+					control.actualizaDatos(usuario);
 			}
 
 			@Override

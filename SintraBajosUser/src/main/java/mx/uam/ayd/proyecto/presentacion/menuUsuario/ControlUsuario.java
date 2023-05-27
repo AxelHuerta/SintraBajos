@@ -59,4 +59,9 @@ public class ControlUsuario {
    public void reagendarCita(Usuario usuario) {
       controlReagendarCita.inicia(usuario);
    }
+
+public void actualizaDatos(Usuario usuario) {
+	   controlActualizarDatos.inicia(usuario);
+   }
+
 }
