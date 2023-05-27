@@ -99,7 +99,8 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     model.addColumn("Password"); 
     model.addColumn("Sexo"); 
     model.addColumn("Telefono"); 
-    model.addColumn("Boton"); 
+    model.addColumn("Boton");
+    model.addColumn("Editar");
     // Agregamos el Scroll para la tabla.
     scrollPane.setViewportView(tablaUsuarios);
     /*Oculta la contrasena de la tabla.*/
@@ -129,7 +130,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     List<Usuario> listaImprimir = control.obtenUsuarios();
     // Se asigna a la lista la persona.
     for (Usuario usuario : listaImprimir) {
-      Object[] fila = new Object[12];
+      Object[] fila = new Object[13];
       fila[0] = usuario.getIdUsuario();
       fila[1] = usuario.getNombre();
       fila[2] = usuario.getApellido();
@@ -142,6 +143,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
       fila[9] =usuario.getSexo();
       fila[10] =usuario.getTelefono();
       fila[11] = "Consultar";
+      fila[12] = "Editar";
       model.addRow(fila); //Los elementos son agregados a la tabla. 
     }
   }
@@ -181,6 +183,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     usuario.setPass(tablaUsuarios.getValueAt(fila, 8).toString());
     usuario.setSexo(tablaUsuarios.getValueAt(fila, 9).toString());
     usuario.setTelefono((long) tablaUsuarios.getValueAt(fila, 10));
+
     return usuario; // Se almacenan los datos del paciente.
   }
 
@@ -195,7 +198,10 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     if (columna == 11) { // Columna 11 referente a la columna de consulta.
       pac = validarSeleccionMouse(fila); // Se obtienen el objeto usuario al cual se le realizara la consulta
       control.recuperaUsuario(pac); // Con este metodo se hace referencia al Usuario en turno
-
+    }
+    if(columna == 12){
+      pac = validarSeleccionMouse(fila);
+      control.iniciaE(pac);
     }
   }
 
