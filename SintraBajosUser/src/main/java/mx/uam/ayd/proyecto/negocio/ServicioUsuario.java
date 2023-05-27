@@ -88,4 +88,9 @@ public class ServicioUsuario {
 	 * @return Una lista con los usuarios (o lista vacía)
 	 */
 	
+	  // El paciente es almacenado con su nueva informacion
+	  public void nuevo(Usuario u) {
+	    usuarioRepository.save(u);
+	  }
+	
 }
