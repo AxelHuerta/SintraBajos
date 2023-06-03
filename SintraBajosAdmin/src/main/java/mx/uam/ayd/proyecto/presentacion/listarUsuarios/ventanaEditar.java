@@ -155,15 +155,25 @@ public class ventanaEditar extends JFrame {
       @Override
 
       public void mouseClicked(MouseEvent e) {
-        usuario.setNombre(textField.getText());
-        usuario.setApellido(textField_1.getText());
-        usuario.setApellidomaterno(textField_2.getText());
-        usuario.setTelefono(Long.parseLong(textField_3.getText()));
-        usuario.setCorreo(textField_4.getText());
-        usuario.setDomicilio(textField_5.getText());
-        controlE.recuperaNuevo(usuario);
-      }
-    });
+    	  if(textField.getText().equals("") || textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("") || textField_4.getText().equals("") || textField_5.getText().equals("")){ 
+    	  muestraDialogoConMensaje("Rellena Todos Los Campos");
+    	  }
+    	  else if(textField_3.getText().length()<10 || !textField_3.getText().matches("\\d{10}")){
+    		  muestraDialogoConMensaje("Verifica el Número de Télefono ingresado");
+    	  }
+    	  else if(textField_4.getText().contains(".com") && !textField_4.getText().contains(".mx") || !textField_4.getText().contains("@")){
+    		  muestraDialogoConMensaje("Verifica que el correo sea valido");
+    	  }
+          else{
+        	  usuario.setNombre(textField.getText());
+        	  usuario.setApellido(textField_1.getText());
+        	  usuario.setApellidomaterno(textField_2.getText());
+        	  usuario.setTelefono(Long.parseLong(textField_3.getText()));
+        	  usuario.setCorreo(textField_4.getText());
+        	  usuario.setDomicilio(textField_5.getText());
+        	  controlE.recuperaNuevo(usuario);
+     }
+    }});
     
     btnActualizar.setFont(new Font("Arial", Font.BOLD, 15));
     btnActualizar.setBounds(601, 444, 143, 38);
@@ -174,7 +184,7 @@ public class ventanaEditar extends JFrame {
   public void muestraE(ControlListarUsuarios control, Usuario usuario) {
     this.controlE = control;
     this.usuario = usuario;
-
+   
     textField.setText(usuario.getNombre());
     textField_1.setText(usuario.getApellido());
     textField_2.setText(usuario.getApellidomaterno());
@@ -192,4 +202,9 @@ public class ventanaEditar extends JFrame {
     JOptionPane.showMessageDialog(null,"La informacion fue actualizada correctamente.");
     cierra();
   }
+  
+  public void muestraDialogoConMensaje(String mensaje){
+    JOptionPane.showMessageDialog(this,mensaje);
+    }
+   
 }
