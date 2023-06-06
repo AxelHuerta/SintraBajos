@@ -149,7 +149,7 @@ public class VentanaVerUsaurio extends JFrame {
     // TODO: btn regresar
     // botón para regresar al menu
     JButton btnRegresar = new JButton("Regresar");
-    btnRegresar.setBounds(30, 600, 117, 29);
+    btnRegresar.setBounds(30, 550, 117, 29);
     contentPane.add(btnRegresar);
 
 			btnRegresar.addActionListener(new ActionListener() {
