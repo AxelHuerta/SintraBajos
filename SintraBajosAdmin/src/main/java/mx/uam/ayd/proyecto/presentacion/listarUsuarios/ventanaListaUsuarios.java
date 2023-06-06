@@ -40,7 +40,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(false);
     setLocationRelativeTo(null);// Centramos la ventana
-    setBounds(100, 100, 900, 600);
+    setBounds(100, 100, 950, 600);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -49,7 +49,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
 
     JPanel panelRaiz = new JPanel();
     panelRaiz.setBackground(Color.LIGHT_GRAY);
-    panelRaiz.setBounds(0, 0, 884, 561);
+    panelRaiz.setBounds(0, 0, 984, 561);
     contentPane.add(panelRaiz);
     panelRaiz.setLayout(null);
 
@@ -67,7 +67,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     JPanel panelNombrePag = new JPanel();
     panelNombrePag.setLayout(null);
     panelNombrePag.setBackground(SystemColor.activeCaption);
-    panelNombrePag.setBounds(121, 0, 763, 88);
+    panelNombrePag.setBounds(121, 0, 863, 88);
     panelRaiz.add(panelNombrePag);
 
     JLabel lblListaDeClientes = new JLabel("Lista de Pacientes.");
@@ -77,7 +77,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     panelNombrePag.add(lblListaDeClientes);
 
     JScrollPane scrollPane = new JScrollPane();
-    scrollPane.setBounds(10, 99, 864, 451);
+    scrollPane.setBounds(10, 99, 930, 451);
     panelRaiz.add(scrollPane);
     //Oculto la tabla de contrasena
     tablaUsuarios = new JTable() {
@@ -100,6 +100,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     model.addColumn("Sexo"); 
     model.addColumn("Telefono"); 
     model.addColumn("Boton");
+    model.addColumn("Consultar");
     model.addColumn("Editar");
     // Agregamos el Scroll para la tabla.
     scrollPane.setViewportView(tablaUsuarios);
@@ -130,7 +131,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
     List<Usuario> listaImprimir = control.obtenUsuarios();
     // Se asigna a la lista la persona.
     for (Usuario usuario : listaImprimir) {
-      Object[] fila = new Object[13];
+      Object[] fila = new Object[14];
       fila[0] = usuario.getIdUsuario();
       fila[1] = usuario.getNombre();
       fila[2] = usuario.getApellido();
@@ -142,8 +143,9 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
       fila[8] =usuario.getPass();
       fila[9] =usuario.getSexo();
       fila[10] =usuario.getTelefono();
-      fila[11] = "Consultar";
-      fila[12] = "Editar";
+      fila[11] = "Ver diagnóstico";
+      fila[12] = "Consultar";
+      fila[13] = "Editar";
       model.addRow(fila); //Los elementos son agregados a la tabla. 
     }
   }
@@ -199,7 +201,11 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
       pac = validarSeleccionMouse(fila); // Se obtienen el objeto usuario al cual se le realizara la consulta
       control.recuperaUsuario(pac); // Con este metodo se hace referencia al Usuario en turno
     }
-    if(columna == 12){
+    if (columna == 12) {
+      pac = validarSeleccionMouse(fila); // Se obtienen el objeto usuario al cual se le realizara la consulta
+      control.iniciaVentanaVerUsuario(pac);
+    }
+    if(columna == 13){
       pac = validarSeleccionMouse(fila);
       control.iniciaE(pac);
     }
