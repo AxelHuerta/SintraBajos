@@ -2,9 +2,11 @@ package mx.uam.ayd.proyecto.presentacion.listarUsuarios;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -149,14 +151,16 @@ public class VentanaVerUsaurio extends JFrame {
     // TODO: btn regresar
     // botón para regresar al menu
     JButton btnRegresar = new JButton("Regresar");
-    btnRegresar.setBounds(30, 550, 117, 29);
+    btnRegresar.setBounds(30, 520, 117, 29);
     contentPane.add(btnRegresar);
 
-			btnRegresar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				control.termina();
-			}
-		});
+    btnRegresar.addActionListener(
+      new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          control.termina();
+        }
+      }
+    );
   }
 
   /**
@@ -170,6 +174,14 @@ public class VentanaVerUsaurio extends JFrame {
     this.control = control;
     this.usuario = usuario;
     String diagnostico = "";
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    LocalDate fechaNacimiento = usuario
+      .getFechaNa()
+      .toInstant()
+      .atZone(ZoneId.systemDefault())
+      .toLocalDate();
+    String fechaFormateada = fechaNacimiento.format(formato);
 
     // comporbar si existen diagnosticos para este usaurio
     if (usuario.getDiagnostico().compareTo("") == 0) {
@@ -194,10 +206,7 @@ public class VentanaVerUsaurio extends JFrame {
     muestraApellidoMaterno.setText(
       "Apellido materno: " + usuario.getApellidomaterno()
     );
-    muestraFechaNacimiento.setText(
-      // TODO: Solo la fecha, hay que quitar la hora
-      "Fecha de nacimiento: " + usuario.getFechaNa()
-    );
+    muestraFechaNacimiento.setText("Fecha de nacimiento: " + fechaFormateada);
     muestraSexo.setText("Sexo: " + usuario.getSexo());
     setVisible(true);
     muestraCorreo.setText("Correo: " + usuario.getCorreo());
