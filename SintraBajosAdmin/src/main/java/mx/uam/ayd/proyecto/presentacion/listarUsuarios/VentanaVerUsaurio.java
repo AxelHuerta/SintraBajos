@@ -2,8 +2,6 @@ package mx.uam.ayd.proyecto.presentacion.listarUsuarios;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -153,11 +151,7 @@ public class VentanaVerUsaurio extends JFrame {
     contentPane.add(btnRegresar);
 
     btnRegresar.addActionListener(
-      new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-          control.termina();
-        }
-      }
+      e -> control.termina()
     );
   }
 
