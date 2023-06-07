@@ -66,7 +66,7 @@ public class ventanaListaUsuarios extends JFrame implements MouseListener {
 
     JPanel panelNombrePag = new JPanel();
     panelNombrePag.setLayout(null);
-    panelNombrePag.setBackground(SystemColor.activeCaption);
+    panelNombrePag.setBackground(Color.LIGHT_GRAY);
     panelNombrePag.setBounds(121, 0, 863, 88);
     panelRaiz.add(panelNombrePag);
 
