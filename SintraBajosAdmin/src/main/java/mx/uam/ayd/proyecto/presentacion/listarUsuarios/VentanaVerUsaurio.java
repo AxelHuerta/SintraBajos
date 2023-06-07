@@ -22,7 +22,6 @@ public class VentanaVerUsaurio extends JFrame {
 
   private JPanel contentPane;
   private ControlVerUsuario control;
-  private Usuario usuario;
   private JLabel muestraPerfil;
   private JLabel muestraNombre;
   private JLabel muestraApellidoPaterno;
@@ -148,7 +147,6 @@ public class VentanaVerUsaurio extends JFrame {
     muestraDiagnostico.setBounds(30, 370, 500, 50);
     panelRaiz.add(muestraDiagnostico);
 
-    // TODO: btn regresar
     // botón para regresar al menu
     JButton btnRegresar = new JButton("Regresar");
     btnRegresar.setBounds(30, 520, 117, 29);
@@ -172,7 +170,6 @@ public class VentanaVerUsaurio extends JFrame {
    */
   public void muestra(ControlVerUsuario control, Usuario usuario) {
     this.control = control;
-    this.usuario = usuario;
     String diagnostico = "";
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
