@@ -39,22 +39,6 @@ public class VentanaAgendarCita extends JFrame {
 	private JComboBox<String> comboBoxServicios;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaAgendarCita frame = new VentanaAgendarCita();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public VentanaAgendarCita() {
