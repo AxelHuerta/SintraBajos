@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import com.toedter.calendar.JMonthChooser;
 import javax.swing.table.DefaultTableModel;
 
@@ -97,7 +99,15 @@ public class VentanaEliminarCitas extends JFrame {
 		Regresar.setFont(new Font("Roboto Light", Font.PLAIN, 16));
 		Regresar.setBounds(37, 487, 123, 46);
 		contentPane.add(Regresar);
-	}
+        
+        // LISTENERS 
+        Regresar.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                controlE.termina();
+            }
+        });
+    }
 
     public void muestraE(ControlEliminarCita controlE){
         this.controlE = controlE;
