@@ -155,7 +155,7 @@ public class ventanaAdmin extends JFrame {
 
       @Override
       public void mouseClicked(MouseEvent e) {
-        JOptionPane.showMessageDialog(null, "Se dio clic en Eliminar Citas.");
+        control.EliminarCitas();
       }
     });
     etiquetaECitas.setHorizontalAlignment(SwingConstants.CENTER);
