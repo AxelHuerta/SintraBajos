@@ -15,6 +15,9 @@ import javax.swing.border.EmptyBorder;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 import org.springframework.stereotype.Component;
 
+/**
+ * clase que muestra la GUI para ver los datos del usaurio
+ */
 @Component
 public class VentanaVerUsaurio extends JFrame {
 
@@ -150,9 +153,7 @@ public class VentanaVerUsaurio extends JFrame {
     btnRegresar.setBounds(30, 520, 117, 29);
     contentPane.add(btnRegresar);
 
-    btnRegresar.addActionListener(
-      e -> control.termina()
-    );
+    btnRegresar.addActionListener(e -> control.termina());
   }
 
   /**
@@ -160,6 +161,7 @@ public class VentanaVerUsaurio extends JFrame {
    *  inicia la ventana para consultar los datos de usuario
    *  @param ControlVerUsuario
    *  @param Usuario
+   * @return
    *
    */
   public void muestra(ControlVerUsuario control, Usuario usuario) {
