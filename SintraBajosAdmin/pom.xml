@@ -39,6 +39,13 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
+		<!--JCalendar-->
+	   <dependency>
+         <groupId>com.toedter</groupId>
+         <artifactId>jcalendar</artifactId>
+         <version>1.4</version>
+       </dependency>
 
 		<!-- Servidor Web -->
 		<dependency>
@@ -58,12 +65,6 @@
 			</exclusions>
 		</dependency>
 
-		<!--JCalendar-->
-	   <dependency>
-         <groupId>com.toedter</groupId>
-         <artifactId>jcalendar</artifactId>
-         <version>1.4</version>
-       </dependency> 
 
 		 <dependency>
         <groupId>mysql</groupId>

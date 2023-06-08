@@ -124,7 +124,9 @@ public class ventanaAdmin extends JFrame {
 
       @Override
       public void mouseClicked(MouseEvent e) {
-        JOptionPane.showMessageDialog(null, "Se dio clic en Agendar citas.");
+       // JOptionPane.showMessageDialog(null, "Se dio clic en Agendar citas.");
+        control.agendarCita();
+        
       }
     });
     etiquetaACitas.setHorizontalAlignment(SwingConstants.CENTER);
@@ -171,7 +173,7 @@ public class ventanaAdmin extends JFrame {
     etiquetaImg1_3.setBounds(66, 45, 141, 90);
     panelEliminaCitas.add(etiquetaImg1_3);
 
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// Con esto cerramos la ventana
+   
   }
 
   public void muestra(ControlAdmin control) {
