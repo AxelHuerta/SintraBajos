@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class VentanaVerUsaurio extends JFrame {
 
+  // declaracion de variables
   private JPanel contentPane;
   private ControlVerUsuario control;
   private JLabel muestraPerfil;
@@ -40,6 +41,7 @@ public class VentanaVerUsaurio extends JFrame {
    * Create the frame.
    */
   public VentanaVerUsaurio() {
+    // se establece el tipo de fuente
     textoNormal = new Font("Roboto Light", Font.PLAIN, 16);
     textoBold = new Font("Roboto Light", Font.BOLD, 16);
 
@@ -58,6 +60,7 @@ public class VentanaVerUsaurio extends JFrame {
     contentPane.add(panelRaiz);
     panelRaiz.setLayout(null);
 
+    // panel para el logo
     JPanel panelLogo = new JPanel();
     panelLogo.setBounds(0, 0, 121, 88);
     panelRaiz.add(panelLogo);
@@ -71,12 +74,14 @@ public class VentanaVerUsaurio extends JFrame {
     lblNewLabel.setBounds(0, 0, 121, 88);
     panelLogo.add(lblNewLabel);
 
+    // panel de la cabecera
     JPanel panelNombrePag = new JPanel();
     panelNombrePag.setLayout(null);
     panelNombrePag.setBackground(Color.lightGray);
     panelNombrePag.setBounds(121, 0, 763, 88);
     panelRaiz.add(panelNombrePag);
 
+    // titulo de la cabecera
     JLabel lblListaDeClientes = new JLabel("Perfil del paciente.");
     lblListaDeClientes.setHorizontalAlignment(SwingConstants.CENTER);
     lblListaDeClientes.setFont(new Font("Leelawadee UI", Font.BOLD, 20));
@@ -88,11 +93,13 @@ public class VentanaVerUsaurio extends JFrame {
     muestraPerfil.setBounds(30, 100, 500, 50);
     panelRaiz.add(muestraPerfil);
 
+    // titulo de la sección 'Datos generales'
     JLabel labelDatosGenerales = new JLabel("Datos generales");
     labelDatosGenerales.setFont(textoBold);
     labelDatosGenerales.setBounds(30, 130, 500, 50);
     panelRaiz.add(labelDatosGenerales);
 
+    // datos generales del usuario
     muestraNombre = new JLabel();
     muestraNombre.setFont(textoNormal);
     muestraNombre.setBounds(30, 160, 500, 50);
@@ -118,11 +125,13 @@ public class VentanaVerUsaurio extends JFrame {
     muestraSexo.setBounds(400, 190, 500, 50);
     panelRaiz.add(muestraSexo);
 
+    // titulo de la sección 'Datos de contacto'
     JLabel labelDatosContacto = new JLabel("Datos de contacto");
     labelDatosContacto.setFont(textoBold);
     labelDatosContacto.setBounds(30, 250, 500, 50);
     panelRaiz.add(labelDatosContacto);
 
+    // datos de contacto del usuario
     muestraCorreo = new JLabel();
     muestraCorreo.setFont(textoNormal);
     muestraCorreo.setBounds(30, 280, 500, 50);
@@ -138,6 +147,7 @@ public class VentanaVerUsaurio extends JFrame {
     muestraDomicilio.setBounds(400, 280, 500, 50);
     panelRaiz.add(muestraDomicilio);
 
+    // titulo de la seccion 'Diagnóstico'
     JLabel labelDiagnostico = new JLabel("Diagnóstico:");
     labelDiagnostico.setFont(textoBold);
     labelDiagnostico.setBounds(30, 340, 500, 50);
@@ -151,6 +161,8 @@ public class VentanaVerUsaurio extends JFrame {
     // botón para regresar al menu
     JButton btnRegresar = new JButton("Regresar");
     btnRegresar.setBounds(30, 520, 117, 29);
+    btnRegresar.setBackground(Color.gray);
+    btnRegresar.setForeground(Color.white);
     contentPane.add(btnRegresar);
 
     btnRegresar.addActionListener(e -> control.termina());
@@ -169,6 +181,7 @@ public class VentanaVerUsaurio extends JFrame {
     String diagnostico = "";
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    // convierte la fecha de nacimiento de Date a LocalDate
     LocalDate fechaNacimiento = usuario
       .getFechaNa()
       .toInstant()
@@ -183,6 +196,7 @@ public class VentanaVerUsaurio extends JFrame {
       diagnostico = usuario.getDiagnostico();
     }
 
+    // agrega los datos del usario a la ventana
     muestraPerfil.setText(
       "Perfil del paciente: " +
       usuario.getNombre() +
