@@ -56,7 +56,7 @@ public class ControlListarUsuarios {
   public void recuperaNuevo(Usuario usuario) {
     servicioUsuario.nuevo(usuario);
     ventana.muestraMensaje();
-    ventana2.muestraNuevo();
+   
   }
 
   ///////////////////////////////////////
@@ -64,7 +64,7 @@ public class ControlListarUsuarios {
   ///////////////////////////////////////
   // Metodo para obtener al paciente
   public void recuperaUsuario(Usuario paciente) {
-    ventana2.termina();
+    //ventana2.termina();
     pacienteActual(paciente);
   }
 

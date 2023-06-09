@@ -3,6 +3,7 @@ package mx.uam.ayd.proyecto.presentacion.CitaAdministrador;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import org.springframework.stereotype.Component;
 import com.toedter.calendar.JCalendar;
@@ -33,13 +34,15 @@ public class VentanaCitaAdmin extends JFrame {
 
   private JPanel contentPane;
   private static final String FONT_TEXTO = "Roboto Light";
-  private static final String FONT_CALENDAR = "Dubai Light";
+  private static final String FONT_CALENDAR = "Roboto Light";
   private JComboBox<String> comboBoxHoras;
   private DefaultComboBoxModel<String> comboBoxModelH = new DefaultComboBoxModel<>();	
   private DefaultComboBoxModel<String> comboBoxModelU = new DefaultComboBoxModel<>();	
   private JComboBox<String> comboBoxPaciente;
   private ControlCitaAdmin control;
   private List<Usuario> listaUsuario;
+  private JTextField tcorreo;
+  private Usuario usuariorecuperado;
 
   /**
    * Create the frame.
@@ -171,26 +174,41 @@ public class VentanaCitaAdmin extends JFrame {
 			bcancelar.setBounds(369, 631, 198, 29);
 			panelRaiz.add(bcancelar);
 			
+			tcorreo = new JTextField();
+			tcorreo.setEditable(false);
+			tcorreo.setFont(new Font(FONT_TEXTO, Font.PLAIN, 14));
+			tcorreo.setBounds(197, 458, 290, 20);
+			tcorreo.setHorizontalAlignment(SwingConstants.RIGHT);
+			panelRaiz.add(tcorreo);
+			
+			
 			comboBoxPaciente = new JComboBox<>();
 			comboBoxPaciente.setFont(new Font(FONT_TEXTO, Font.PLAIN, 14));
 			comboBoxPaciente.setBounds(197, 417, 290, 17);
 			panelRaiz.add(comboBoxPaciente);
 			((JLabel)comboBoxPaciente.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT); //Alinea el nombre del paciente a la derecha 
-			
-			
-			JComboBox<String> comboBoxCorreo = new JComboBox<>();
-			comboBoxCorreo.setFont(new Font(FONT_TEXTO, Font.PLAIN, 14));
-			comboBoxCorreo.setBounds(197, 457, 290, 17);
-			panelRaiz.add(comboBoxCorreo);
-			
+					
 			
 			
 			
 			//LISTENERS
 			
+			comboBoxPaciente.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					asignarusuario();
+				}
+			});
+			
 			bconsultar.addMouseListener(new MouseAdapter() {      // Listener de consultar
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					if (usuariorecuperado != null) {
+						control.consultar(usuariorecuperado);
+					}
+					else {
+						muestramensaje("Selecciona un Paciente");
+					}
 					
 				}
 			});
@@ -211,16 +229,40 @@ public class VentanaCitaAdmin extends JFrame {
 			});
 			
   }
+  
+  public void llenaUsuarios() {
+	  comboBoxPaciente.removeAllItems();
+	  listaUsuario = control.listausuarios();
+	  
+	  for (Usuario Usuarios : listaUsuario) {  // CON ESTE CICLO FOR SE LLENA EL CONBOBOX DE NOMBRE DEL PACIENTE
+			comboBoxModelU.addElement(Usuarios.getNombre()+" "+Usuarios.getApellido()+ " "+Usuarios.getApellidomaterno()); 
+		    }
+		    comboBoxPaciente.setModel(comboBoxModelU);
+	  
+  }
+  
+  public void asignarusuario() {
+	  String cadena = (String) comboBoxPaciente.getSelectedItem();
+	  String[] palabras = cadena.split(" ");
+	  for (Usuario usuario : listaUsuario) {
+          if (usuario.getNombre().equals(palabras[0])) {
+              usuariorecuperado = usuario;
+              tcorreo.setText(usuariorecuperado.getCorreo());
+              break; // Se encontró el usuario, se termina el bucle
+          }
+      } 
+  }
+  
+  public void muestramensaje(String mensaje ) {
+		JOptionPane.showMessageDialog(this , mensaje);
+	}
 
   public void muestra(ControlCitaAdmin control) {
+	this.control = control;
 	listaUsuario = null;
-	comboBoxPaciente.removeAllItems();
-    this.control = control;
-    listaUsuario = control.listausuarios();
-    for (Usuario Usuarios : listaUsuario) {
-	comboBoxModelU.addElement(Usuarios.getNombre()+" "+Usuarios.getApellido()+ " "+Usuarios.getApellidomaterno()); 
-    }
-    comboBoxPaciente.setModel(comboBoxModelU);
+	llenaUsuarios();
+	
+    
     setVisible(true);
   }
 
