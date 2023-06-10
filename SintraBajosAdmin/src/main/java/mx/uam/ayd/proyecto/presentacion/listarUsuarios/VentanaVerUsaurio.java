@@ -17,6 +17,9 @@ import org.springframework.stereotype.Component;
 
 /**
  * clase que muestra la GUI para ver los datos del usaurio
+ * @author Axel Huerta Hernández
+ * @version 1.0
+ * @Date 10/06/2023
  */
 @Component
 public class VentanaVerUsaurio extends JFrame {

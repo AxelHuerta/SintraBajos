@@ -51,11 +51,11 @@ public class ServicioCita {
     Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
 
     if (cita != null) {
-      if (comprobarCitasDia(fecha) == true) {
-        throw new IllegalArgumentException("Día lleno");
-      } else {
-        throw new IllegalArgumentException("El horario no esta disponible");
-      }
+      throw new IllegalArgumentException("El horario no esta disponible");
+    }
+
+    if (comprobarCitasDia(fecha)) {
+      throw new IllegalArgumentException("Día lleno");
     }
 
     // registrar datos de la cita
@@ -87,7 +87,8 @@ public class ServicioCita {
       }
     }
 
-    return citas.size() == 8 ? true : false;
+    // 8 horas dado que es la maxima de citas por dia
+    return citas.size() == 8;
   }
 
   /**

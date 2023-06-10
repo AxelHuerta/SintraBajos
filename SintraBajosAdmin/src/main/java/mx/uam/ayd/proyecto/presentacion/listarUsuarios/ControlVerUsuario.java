@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 /**
  * Clase para el control de la ventana que muestra
  * los detalles del usuario
+ * @author Axel Huerta Hernández
+ * @version 1.0
+ * @Date 10/06/2023
  */
 
 @Component
