@@ -202,7 +202,7 @@ public class VentanaEliminarCitas extends JFrame {
 
     public void muestraE(ControlEliminarCita controlE){
         this.controlE = controlE;
-		this.controlE.obtenerCitasPorFecha(LocalDate.now().plusDays(1)); 
+		this.controlE.obtenerCitasPorFecha(LocalDate.now()); 
 
 		setVisible(true);
     }
@@ -227,12 +227,9 @@ public class VentanaEliminarCitas extends JFrame {
 		DefaultTableModel model = (DefaultTableModel) tablaDCitas.getModel();
 		model.setRowCount(0); // Limpiar la tabla antes de actualizar los datos
 		
-		LocalDate fechaActual = LocalDate.now(); // Obtener la fecha actual
 		for (Cita cita : citas) {
-			if (cita.getFecha().isAfter(fechaActual) || cita.getFecha().isEqual(fechaActual)) {
-				Object[] row = { cita.getNombre(), cita.getFecha(), cita.getHora(), cita.getServicio() };
-				model.addRow(row);
-			}
+        Object[] row = { cita.getNombre(), cita.getFecha(), cita.getHora(), cita.getServicio() };
+        model.addRow(row);
 		}
 	}
 }
