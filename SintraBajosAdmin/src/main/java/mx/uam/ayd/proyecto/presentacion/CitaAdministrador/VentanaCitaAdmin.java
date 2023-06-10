@@ -8,10 +8,10 @@ import javax.swing.border.EmptyBorder;
 import org.springframework.stereotype.Component;
 import com.toedter.calendar.JCalendar;
 
+import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
@@ -22,9 +22,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -39,14 +42,22 @@ public class VentanaCitaAdmin extends JFrame {
   private DefaultComboBoxModel<String> comboBoxModelH = new DefaultComboBoxModel<>();	
   private DefaultComboBoxModel<String> comboBoxModelU = new DefaultComboBoxModel<>();	
   private JComboBox<String> comboBoxPaciente;
+  private JComboBox<String> comboBoxServicios;
   private ControlCitaAdmin control;
   private List<Usuario> listaUsuario;
   private JTextField tcorreo;
   private Usuario usuariorecuperado;
 
+ 
   /**
-   * Create the frame.
+   * Descripción de la clase VentanaCitaAdmin. Se especifican los
+   * elementos de la ventana.
+   * 
+   * @author Octavio Silva Zamora
+   * @version 1.0
+   * @Date 09/06/2023
    */
+  
   public VentanaCitaAdmin() {
 	  setTitle("Cita para Paciente");
 		setResizable(false);
@@ -107,16 +118,17 @@ public class VentanaCitaAdmin extends JFrame {
 			DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");			
 			LocalTime[] lapzos = new LocalTime[8];
 
-			// establece las horas que van a mostrarse
+			// Establece las horas que van a mostrarse con el formato de hora
 			int i = 8;
 			for (LocalTime lap : lapzos) {
 				LocalTime horario = LocalTime.parse(i + ":00", formatoHora);
 				comboBoxModelH.addElement(horario.toString());
 				i++;
 			}
-			
 			comboBoxHoras.setModel(comboBoxModelH);
-			((JLabel)comboBoxHoras.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT); //Alinea las horas a la derecha
+			
+			//Alinea las horas a la derecha
+			((JLabel)comboBoxHoras.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT); 
 			
 			JLabel lpaciente = new JLabel("Nombre del Paciente");
 			lpaciente.setFont(new Font(FONT_TEXTO, Font.PLAIN, 16));
@@ -134,12 +146,10 @@ public class VentanaCitaAdmin extends JFrame {
 			ltipoCita.setBounds(33, 509, 105, 14);
 			panelRaiz.add(ltipoCita);
 			
-			JCheckBox chckbxGeneral = new JCheckBox("General");
-			chckbxGeneral.setOpaque(false);
-			chckbxGeneral.setForeground(Color.BLACK);
-			chckbxGeneral.setFont(new Font(FONT_TEXTO, Font.PLAIN, 16));
-			chckbxGeneral.setBounds(201, 505, 97, 23);
-		    panelRaiz.add(chckbxGeneral);
+			comboBoxServicios = new JComboBox<String>();
+			comboBoxServicios.setFont(new Font(FONT_TEXTO, Font.PLAIN, 14));
+			comboBoxServicios.setBounds(197, 507, 187, 17);
+			panelRaiz.add(comboBoxServicios);
 			
 			JLabel lhistorial = new JLabel("Historial Clinico");
 			lhistorial.setFont(new Font(FONT_TEXTO, Font.PLAIN, 16));
@@ -150,7 +160,7 @@ public class VentanaCitaAdmin extends JFrame {
 			chckbxUrgente.setOpaque(false);
 			chckbxUrgente.setForeground(Color.BLACK);
 			chckbxUrgente.setFont(new Font(FONT_TEXTO, Font.PLAIN, 16));
-			chckbxUrgente.setBounds(360, 505, 97, 23);
+			chckbxUrgente.setBounds(403, 505, 97, 23);
 			panelRaiz.add(chckbxUrgente);
 			
 			JButton bconsultar = new JButton("Consultar");
@@ -186,21 +196,23 @@ public class VentanaCitaAdmin extends JFrame {
 			comboBoxPaciente.setFont(new Font(FONT_TEXTO, Font.PLAIN, 14));
 			comboBoxPaciente.setBounds(197, 417, 290, 17);
 			panelRaiz.add(comboBoxPaciente);
-			((JLabel)comboBoxPaciente.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT); //Alinea el nombre del paciente a la derecha 
+			
+			 //Alinea el nombre del paciente a la derecha 
+			((JLabel)comboBoxPaciente.getRenderer()).setHorizontalAlignment(SwingConstants.RIGHT);
 					
 			
 			
 			
 			//LISTENERS
 			
-			comboBoxPaciente.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					asignarusuario();
-				}
+			comboBoxPaciente.addItemListener(e -> {            //Listener que ejecuta el evento al seleccionar un nombre de usuario
+			    if (e.getStateChange() == ItemEvent.SELECTED) {
+			        String nombre = (String) comboBoxPaciente.getSelectedItem();
+			        asignarusuario(nombre);
+			    }
 			});
 			
-			bconsultar.addMouseListener(new MouseAdapter() {      // Listener de consultar
+			bconsultar.addMouseListener(new MouseAdapter() {    // Listener de consulta para el cotrol que llama a la ventana diagnostico
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					if (usuariorecuperado != null) {
@@ -216,7 +228,16 @@ public class VentanaCitaAdmin extends JFrame {
 			
 			bregistrar.addMouseListener(new MouseAdapter() {          //Listener de Registrar
 				@Override
-				public void mouseClicked(MouseEvent e) {       
+				public void mouseClicked(MouseEvent e) { 
+					if(calendar.getDate()==null|| comboBoxHoras.getSelectedItem().equals("") || comboBoxServicios.getSelectedItem().equals("") || usuariorecuperado == null) {
+						muestramensaje("Verifique que no haya campos vacios o sin seleccionar");
+					}
+					else {
+					 LocalDate date = calendar.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
+					
+					control.agregarcita(date,  LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora) , (String)comboBoxServicios.getSelectedItem(), usuariorecuperado.getCorreo(), usuariorecuperado.getNombre());
+					}
 				}
 			});
 		   
@@ -224,45 +245,89 @@ public class VentanaCitaAdmin extends JFrame {
 			bcancelar.addMouseListener(new MouseAdapter() {         // Listener de Cancelar
 				@Override
 				public void mouseClicked(MouseEvent e) {   
-					dispose();  // Metodo que cierra la ventana
+					int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de Cancelar?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+			        if (opcion == JOptionPane.YES_OPTION) {
+			        	dispose();  // Metodo que cierra la ventana
+			        }
 				}
 			});
 			
   }
   
-  public void llenaUsuarios() {
-	  comboBoxPaciente.removeAllItems();
-	  listaUsuario = control.listausuarios();
-	  
-	  for (Usuario Usuarios : listaUsuario) {  // CON ESTE CICLO FOR SE LLENA EL CONBOBOX DE NOMBRE DEL PACIENTE
-			comboBoxModelU.addElement(Usuarios.getNombre()+" "+Usuarios.getApellido()+ " "+Usuarios.getApellidomaterno()); 
-		    }
-		    comboBoxPaciente.setModel(comboBoxModelU);
-	  
-  }
+  /**
+   * Llena el ComboBox de usuarios con 
+   * la lista de usuarios obtenida del controlador.
+   * Elimina todos los elementos existentes en el 
+   * ComboBox y agrega los nombres completos de los usuarios.
+   */
   
-  public void asignarusuario() {
-	  String cadena = (String) comboBoxPaciente.getSelectedItem();
-	  String[] palabras = cadena.split(" ");
-	  for (Usuario usuario : listaUsuario) {
-          if (usuario.getNombre().equals(palabras[0])) {
-              usuariorecuperado = usuario;
-              tcorreo.setText(usuariorecuperado.getCorreo());
+  public void llenaUsuarios() {
+	    comboBoxPaciente.removeAllItems(); // Elimina todos los elementos existentes en el ComboBox
+	    listaUsuario = control.listausuarios(); // Obtiene la lista de usuarios del controlador
+
+	    // Agrega los nombres completos de los usuarios al ComboBox
+	    for (Usuario Usuarios : listaUsuario) {
+	        comboBoxModelU.addElement(Usuarios.getNombre() + " " + Usuarios.getApellido() + " " + Usuarios.getApellidomaterno());
+	    }
+
+	    comboBoxPaciente.setModel(comboBoxModelU); // Establece el modelo del ComboBox con los nuevos elementos
+	}
+  
+  /**
+   * Metodo que asigna un usuario en
+   * función del nombre proporcionado.
+   * 
+   * @param nombre. El nombre completo del usuario a asignar.
+   */
+  
+  public void asignarusuario(String nombre) {
+      String[] palabras = nombre.split(" "); // Divide el nombre en palabras utilizando un espacio como delimitador
+
+      // Busca un usuario que coincida con el nombre completo
+      for (Usuario usuario : listaUsuario) {
+          if (usuario.getNombre().equals(palabras[0]) && usuario.getApellido().equals(palabras[1]) && usuario.getApellidomaterno().equals(palabras[2])) {
+              usuariorecuperado = usuario; // Asigna el usuario encontrado a la variable "usuariorecuperado"
+              tcorreo.setText(usuario.getCorreo()); // Establece el correo del usuario en un campo de texto
               break; // Se encontró el usuario, se termina el bucle
           }
-      } 
+      }
   }
   
-  public void muestramensaje(String mensaje ) {
-		JOptionPane.showMessageDialog(this , mensaje);
-	}
+  
+  /**
+   * Actualiza el ComboBox de servicios con
+   * la lista de precios obtenida del controlador.
+   * 
+   * agrega los nombres de los servicios disponibles
+   * al ComboBox principal de los servicios
+   */
+  public void servicios() {
+      DefaultComboBoxModel<String> comboBoxModelS = new DefaultComboBoxModel<>(); // Crea un nuevo modelo de ComboBox
+
+      List<Precios> listaImprimir = control.listaPrecios(); // Obtiene la lista de precios del controlador
+
+      // Agrega los nombres de los servicios disponibles al ComboBox
+      for (Precios Servicio : listaImprimir) {
+          comboBoxModelS.addElement(Servicio.getServicio());
+      }
+      comboBoxServicios.setModel(comboBoxModelS); // Establece el modelo del ComboBox con los nuevos elementos
+  }
+  
+  /**
+   * Muestra un mensaje en una ventana de diálogo.
+   *
+   * @param mensaje El mensaje a mostrar en la ventana de diálogo.
+   */
+  public void muestramensaje(String mensaje) {
+      JOptionPane.showMessageDialog(this, mensaje); 
+  }
 
   public void muestra(ControlCitaAdmin control) {
 	this.control = control;
 	listaUsuario = null;
 	llenaUsuarios();
-	
-    
+	servicios();    
     setVisible(true);
   }
 

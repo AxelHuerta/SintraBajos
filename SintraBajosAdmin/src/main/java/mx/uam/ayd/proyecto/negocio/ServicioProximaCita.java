@@ -14,12 +14,13 @@ import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 public class ServicioProximaCita {
 	@Autowired
 	   ProximasCitasRepository proximasCitasRepository;
+	
 	/**
 	    * 
-	    * Permite agregar una cita
+	    * Busca citas a traves de la fecha
 	    * 
 	    * @param fecha
-	    * @return
+	    * @return Lista <Citas> Retorna la lista de citas 
 	*/
 
 	public List<Cita> obtenerCitasPorFecha(LocalDate fecha) {

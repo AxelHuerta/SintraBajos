@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import mx.uam.ayd.proyecto.datos.CitaRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,23 +43,20 @@ public class ServicioCita {
    * @param servicio
    * @return
    */
-  public Cita agregarCita(
-    LocalDate fecha,
-    LocalTime hora,
-    String servicio,
-    String correo
-  ) {
+  public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo, String Nombre) {
     // Regla de negocio: No se permite agendar dos citas en un mismo horario
 
     Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
 
     if (cita != null) {
       if (comprobarCitasDia(fecha) == true) {
-        throw new IllegalArgumentException("Día lleno");
+    	  JOptionPane.showMessageDialog(null, "Dia lleno");
+    	  throw new IllegalArgumentException("No se agendo la cita dia lleno");
       } else {
-        throw new IllegalArgumentException("El horario no esta disponible");
+    	  JOptionPane.showMessageDialog(null, "Horario Ocupado");
+    	  throw new IllegalArgumentException("No se agendo la cita hora ocupada");
       }
-    }
+    } else {
 
     // registrar datos de la cita
     cita = new Cita();
@@ -64,10 +64,11 @@ public class ServicioCita {
     cita.setFecha(fecha);
     cita.setHora(hora);
     cita.setServicio(servicio);
+    cita.setNombre(Nombre);
 
     // guardar datos de la cita
     citaRepository.save(cita);
-
+    }
     return cita;
   }
 

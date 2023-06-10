@@ -62,11 +62,7 @@ public class ServicioUsuario {
 	    return usuarios;
 	  }
 
-	  /**
-	   * Recupera todos los usuarios existentes
-	   * 
-	   * @return
-	   */
+	  
 	  // El paciente es almacenado con su nueva informacion
 	  public void nuevo(Usuario u) {
 	    usuarioRepository.save(u);
