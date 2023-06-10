@@ -40,7 +40,6 @@ public class ControlEliminarCita {
      */
 
     public List<Cita> obtenerCitasPorFecha(LocalDate fecha) {
-        System.out.println(servicioProximaCita.obtenerCitasPorFecha(fecha));
         return servicioProximaCita.obtenerCitasPorFecha(fecha);
     }
 

@@ -32,6 +32,9 @@ import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 
 /**
  * Ventana para eliminar citas.
+ * @author César Ramírez Echeverría
+ * @version 1.0
+ * @Date 09/06/2023
  */
 
 @Component

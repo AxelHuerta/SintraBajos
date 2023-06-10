@@ -34,11 +34,19 @@ public class ServicioProximaCita {
      * @param hora     Hora de la cita
      * @param servicio Servicio de la cita
      */
+
     public void eliminarCita(String nombre, LocalDate fecha, LocalTime hora, String servicio) {
+    try {
         List<Cita> citas = proximasCitasRepository.findByFecha(fecha);
         if (!citas.isEmpty()) {
             Cita cita = citas.get(0);
             proximasCitasRepository.delete(cita);
         }
+    } catch (Exception e) {
+        // Manejar la excepción aquí
+        System.out.println("Ocurrió un error al eliminar la cita: " + e.getMessage());
     }
+}
+
+
 }
