@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -136,8 +137,8 @@ public class VentanaEliminarCitas extends JFrame {
 				
 				// Obtener los datos de la fila seleccionada
         		String nombre = (String) tablaDCitas.getValueAt(filaSeleccionada, 0);
-        		String fecha = (String) tablaDCitas.getValueAt(filaSeleccionada, 1);
-        		String hora = (String) tablaDCitas.getValueAt(filaSeleccionada, 2);
+        		LocalDate fecha = (LocalDate) tablaDCitas.getValueAt(filaSeleccionada, 1);
+        		LocalTime hora = (LocalTime) tablaDCitas.getValueAt(filaSeleccionada, 2);
 				String servicio = (String) tablaDCitas.getValueAt(filaSeleccionada, 3);
 
         		// Mostrar un mensaje de confirmación

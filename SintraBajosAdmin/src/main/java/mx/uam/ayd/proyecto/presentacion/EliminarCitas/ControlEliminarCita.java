@@ -1,6 +1,7 @@
 package mx.uam.ayd.proyecto.presentacion.EliminarCitas;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class ControlEliminarCita {
         ventana.setVisible(false);
     } 
 
-    public void eliminarCita(String nombre, String fecha, String hora, String servicio) {
+    public void eliminarCita(String nombre, LocalDate fecha, LocalTime hora, String servicio){
+        servicioProximaCita.eliminarCita(nombre, fecha, hora, servicio);
     }
 }

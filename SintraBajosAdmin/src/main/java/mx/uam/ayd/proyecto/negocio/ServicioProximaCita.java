@@ -1,7 +1,7 @@
 package mx.uam.ayd.proyecto.negocio;
 
 import java.time.LocalDate;
-
+import java.time.LocalTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class ServicioProximaCita {
      * @param hora     Hora de la cita
      * @param servicio Servicio de la cita
      */
-    public void eliminarCita(String nombre, LocalDate fecha, String hora, String servicio) {
+    public void eliminarCita(String nombre, LocalDate fecha, LocalTime hora, String servicio) {
         List<Cita> citas = proximasCitasRepository.findByFecha(fecha);
         if (!citas.isEmpty()) {
             Cita cita = citas.get(0);
