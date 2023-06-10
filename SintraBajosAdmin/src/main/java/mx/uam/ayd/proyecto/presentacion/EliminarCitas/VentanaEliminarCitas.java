@@ -30,6 +30,10 @@ import com.toedter.calendar.JDateChooser;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 
+/**
+ * Ventana para eliminar citas.
+ */
+
 @Component
 public class VentanaEliminarCitas extends JFrame {
 
@@ -37,8 +41,12 @@ public class VentanaEliminarCitas extends JFrame {
 	private JTable tablaDCitas;
     private ControlEliminarCita controlE;
 
+	/**
+	 * Crea la ventana de eliminar citas.
+	 */
+
 	public VentanaEliminarCitas() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 688, 610);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -175,6 +183,12 @@ public class VentanaEliminarCitas extends JFrame {
 		});
     }
 
+	/**
+     * Muestra la ventana de eliminar citas.
+     * 
+     * @param controlE Objeto ControlEliminarCita asociado
+     */
+
     public void muestraE(ControlEliminarCita controlE){
         this.controlE = controlE;
 		this.controlE.obtenerCitasPorFecha(LocalDate.now()); 
@@ -182,9 +196,21 @@ public class VentanaEliminarCitas extends JFrame {
 		setVisible(true);
     }
 
+	/**
+     * Muestra un mensaje en un cuadro de diálogo.
+     * 
+     * @param mensaje El mensaje a mostrar
+     */
+
 	public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
+
+	 /**
+     * Actualiza la tabla con las citas proporcionadas.
+     * 
+     * @param citas La lista de citas para mostrar en la tabla
+     */
 
 	private void actualizarTabla(List<Cita> citas) {
         DefaultTableModel model = (DefaultTableModel) tablaDCitas.getModel();
