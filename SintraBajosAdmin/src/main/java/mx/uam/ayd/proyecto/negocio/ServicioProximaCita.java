@@ -25,4 +25,20 @@ public class ServicioProximaCita {
 	public List<Cita> obtenerCitasPorFecha(LocalDate fecha) {
         return proximasCitasRepository.findByFecha(fecha);
     }
+
+	/**
+     * Permite eliminar una cita
+     * 
+     * @param nombre   Nombre de la cita
+     * @param fecha    Fecha de la cita
+     * @param hora     Hora de la cita
+     * @param servicio Servicio de la cita
+     */
+    public void eliminarCita(String nombre, LocalDate fecha, String hora, String servicio) {
+        List<Cita> citas = proximasCitasRepository.findByFecha(fecha);
+        if (!citas.isEmpty()) {
+            Cita cita = citas.get(0);
+            proximasCitasRepository.delete(cita);
+        }
+    }
 }
