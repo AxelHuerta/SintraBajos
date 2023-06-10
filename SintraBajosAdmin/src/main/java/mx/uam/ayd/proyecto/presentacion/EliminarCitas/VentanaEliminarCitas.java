@@ -152,6 +152,14 @@ public class VentanaEliminarCitas extends JFrame {
         		LocalTime hora = (LocalTime) tablaDCitas.getValueAt(filaSeleccionada, 2);
 				String servicio = (String) tablaDCitas.getValueAt(filaSeleccionada, 3);
 
+				// Verificar si la fecha de la cita es estrictamente anterior a la fecha actual
+				LocalDate fechaActual = LocalDate.now();
+				
+				if (fecha.isEqual(fechaActual) || fecha.isAfter(fechaActual)) {
+					mostrarMensaje("No se puede eliminar una cita del día de hoy o futura.");
+					return;
+				}
+
         		// Mostrar un mensaje de confirmación
         		int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar la cita seleccionada?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
         		if (opcion == JOptionPane.YES_OPTION) {
@@ -194,7 +202,7 @@ public class VentanaEliminarCitas extends JFrame {
 
     public void muestraE(ControlEliminarCita controlE){
         this.controlE = controlE;
-		this.controlE.obtenerCitasPorFecha(LocalDate.now()); 
+		this.controlE.obtenerCitasPorFecha(LocalDate.now().plusDays(1)); 
 
 		setVisible(true);
     }
@@ -215,13 +223,16 @@ public class VentanaEliminarCitas extends JFrame {
      * @param citas La lista de citas para mostrar en la tabla
      */
 
-	private void actualizarTabla(List<Cita> citas) {
-        DefaultTableModel model = (DefaultTableModel) tablaDCitas.getModel();
-        model.setRowCount(0); // Limpiar la tabla antes de actualizar los datos
-        
-        for (Cita cita : citas) {
-            Object[] row = { cita.getNombre(), cita.getFecha(), cita.getHora(), cita.getServicio() };
-            model.addRow(row);
-        }
-    }
+	 private void actualizarTabla(List<Cita> citas) {
+		DefaultTableModel model = (DefaultTableModel) tablaDCitas.getModel();
+		model.setRowCount(0); // Limpiar la tabla antes de actualizar los datos
+		
+		LocalDate fechaActual = LocalDate.now(); // Obtener la fecha actual
+		for (Cita cita : citas) {
+			if (cita.getFecha().isAfter(fechaActual) || cita.getFecha().isEqual(fechaActual)) {
+				Object[] row = { cita.getNombre(), cita.getFecha(), cita.getHora(), cita.getServicio() };
+				model.addRow(row);
+			}
+		}
+	}
 }
