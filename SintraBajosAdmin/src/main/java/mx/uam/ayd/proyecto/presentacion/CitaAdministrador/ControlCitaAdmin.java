@@ -3,6 +3,7 @@ package mx.uam.ayd.proyecto.presentacion.CitaAdministrador;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.negocio.ServicioCita;
 import mx.uam.ayd.proyecto.negocio.ServicioPrecios;
 import mx.uam.ayd.proyecto.negocio.ServicioUsuario;
+import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;
@@ -42,6 +44,7 @@ public class ControlCitaAdmin {
 	
 	@Autowired
 	private ServicioCita serviciocita;
+	
 
   
 	/**
@@ -109,6 +112,17 @@ public class ControlCitaAdmin {
           ventana.muestramensaje("No se pudo registrar la cita: " + ex.getMessage()); // Muestra un mensaje de error si se produce una excepción
       }
   }
+  
+  
+  /**
+   * Busca la próxima cita disponible.
+   *
+   * @return un objeto Optional que contiene la próxima cita disponible, o un Optional vacío si no hay citas disponibles.
+   */
+  
+  public Optional<Cita> findProximaCitaDisponible() {
+	  return serviciocita.findProximaCitaDisponible();
+	}
   
   
 	// Termina la historia de usuario
