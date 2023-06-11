@@ -3,11 +3,13 @@ package mx.uam.ayd.proyecto.presentacion.menuAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
+import mx.uam.ayd.proyecto.presentacion.citaAdministrador.ControlCitaAdmin;
 import mx.uam.ayd.proyecto.presentacion.EliminarCitas.ControlEliminarCita;
 import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;
 import mx.uam.ayd.proyecto.presentacion.verCitas.ControlVerCitas;
 
-/*import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;*/
+
 
 @Component
 public class ControlAdmin {
@@ -19,6 +21,10 @@ public class ControlAdmin {
 
   @Autowired
   private ControlVerCitas controlVerCitas;
+  
+  @Autowired
+  private ControlCitaAdmin controlAgendar;
+ 
 
   @Autowired
   private ControlEliminarCita controlEliminarCita;
@@ -35,7 +41,13 @@ public class ControlAdmin {
     controlVerCitas.inicia();
   }
 
-  public void EliminarCitas() {
+  
+  public void agendarCita() {
+	  controlAgendar.inicia();
+  }	  
+
+  public void eliminarCitas() {
     controlEliminarCita.inicia();
+
   }
 }

@@ -34,7 +34,6 @@ public class ventanaDiagnosticoAdmin extends JFrame {
   public ventanaDiagnosticoAdmin() {
     setResizable(false);
     setLocationRelativeTo(null);// Centramos la ventana
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setBounds(100, 100, 600, 500);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -135,7 +134,7 @@ public class ventanaDiagnosticoAdmin extends JFrame {
     btnAgregar.setBackground(new Color(100, 149, 237));
     btnAgregar.setBounds(455, 415, 119, 34);
     panel.add(btnAgregar);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// Con esto cerramos la ventana
+    
   }
 
   //Muestra los datos del paciente que fue seleccionado desde la lista de usuarios. 

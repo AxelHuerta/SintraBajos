@@ -128,12 +128,13 @@ public class ServicioCitaTest {
     LocalTime hora = LocalTime.of(9, 0);
     String servicio = "Servicio de prueba";
     String correo = "correo@ejemplo.com";
+    String nombre = "Juan";
 
     // Simular que no existe una cita en la misma fecha y hora
     when(citaRepository.findByFechaAndHora(fecha, hora)).thenReturn(null);
 
     // Llamar al método bajo prueba
-    Cita cita = citasService.agregarCita(fecha, hora, servicio, correo);
+    Cita cita = citasService.agregarCita(fecha, hora, servicio, correo,nombre);
 
     // Verificar que se haya guardado la cita
     verify(citaRepository, times(1)).save(cita);
@@ -152,6 +153,7 @@ public class ServicioCitaTest {
     LocalTime hora = LocalTime.of(9, 0);
     String servicio = "Servicio de prueba";
     String correo = "correo@ejemplo.com";
+    String nombre = "Juan";
 
     // Simular que ya existe una cita en la misma fecha y hora
     Cita citaExistente = new Cita();
@@ -162,7 +164,7 @@ public class ServicioCitaTest {
     assertThrows(
       IllegalArgumentException.class,
       () -> {
-        citasService.agregarCita(fecha, hora, servicio, correo);
+        citasService.agregarCita(fecha, hora, servicio, correo, nombre);
       }
     );
   }
@@ -192,7 +194,8 @@ public class ServicioCitaTest {
           citaExistente.getFecha(),
           citaExistente.getHora(),
           "Servicio",
-          "Correo"
+          "Correo",
+          "Juan"
         );
       }
     );
