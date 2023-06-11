@@ -1,5 +1,5 @@
 
-package mx.uam.ayd.proyecto.presentacion.CitaAdministrador;
+package mx.uam.ayd.proyecto.presentacion.citaAdministrador;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

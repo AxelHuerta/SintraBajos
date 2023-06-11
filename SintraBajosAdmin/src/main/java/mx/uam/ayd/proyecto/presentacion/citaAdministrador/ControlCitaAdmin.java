@@ -1,4 +1,4 @@
-package mx.uam.ayd.proyecto.presentacion.CitaAdministrador;
+package mx.uam.ayd.proyecto.presentacion.citaAdministrador;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

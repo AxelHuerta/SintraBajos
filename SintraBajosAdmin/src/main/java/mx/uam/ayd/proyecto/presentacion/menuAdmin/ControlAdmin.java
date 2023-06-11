@@ -3,7 +3,7 @@ package mx.uam.ayd.proyecto.presentacion.menuAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mx.uam.ayd.proyecto.presentacion.CitaAdministrador.ControlCitaAdmin;
+import mx.uam.ayd.proyecto.presentacion.citaAdministrador.ControlCitaAdmin;
 import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;
 import mx.uam.ayd.proyecto.presentacion.verCitas.ControlVerCitas;
 
