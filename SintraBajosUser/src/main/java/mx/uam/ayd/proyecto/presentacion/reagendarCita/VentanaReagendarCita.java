@@ -49,21 +49,6 @@ public class VentanaReagendarCita extends JFrame {
   private JTable proximasCitas;
   public String idUsuario;
 
-  /**
-   * Launch the application.
-   */
-  public static void main(String[] args) {
-    EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        try {
-          VentanaReagendarCita frame = new VentanaReagendarCita();
-          frame.setVisible(true);
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
-  }
 
   /**
    * Create the frame.
