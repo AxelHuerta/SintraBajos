@@ -23,12 +23,25 @@ public class ControlListarUsuarios {
   @Autowired
   private ventanaEditar ventanaE;
 
+  @Autowired
+  private ControlVerUsuario controlVerUsuario;
+
   public void inicia() {
     ventana2.muestra(this);
   }
 
   public void iniciaE(Usuario usuario) {
     ventanaE.muestraE(this, usuario);
+  }
+
+  /**
+   *
+   *  inicia la ventana para consultar los datos de usuario 
+   *  @param usuario
+   * 
+   */
+  public void iniciaVentanaVerUsuario(Usuario usuario) {
+    controlVerUsuario.inicia(usuario);
   }
 
   public void iniciaUsuarios() {
