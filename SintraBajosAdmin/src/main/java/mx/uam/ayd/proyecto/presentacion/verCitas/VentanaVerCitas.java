@@ -46,22 +46,7 @@ public class VentanaVerCitas extends JFrame implements MouseListener {
 	public	String idUsuario;
 	private LocalDate fecha;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaVerCitas frame = new VentanaVerCitas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */

@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import org.springframework.stereotype.Component;
 import com.toedter.calendar.JCalendar;
 
+import mx.uam.ayd.proyecto.negocio.modelo.Cita;
 import mx.uam.ayd.proyecto.negocio.modelo.Precios;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
@@ -25,11 +26,13 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @SuppressWarnings("serial")
 @Component
@@ -237,6 +240,9 @@ public class VentanaCitaAdmin extends JFrame {
 				        DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("H:mm");
 					
 					control.agregarcita(date,  LocalTime.parse((String) comboBoxHoras.getSelectedItem(), formatoHora) , (String)comboBoxServicios.getSelectedItem(), usuariorecuperado.getCorreo(), usuariorecuperado.getNombre());
+					
+					// Deseleccionar el chckbxUrgente 
+		            chckbxUrgente.setSelected(false);
 					}
 				}
 			});
@@ -251,6 +257,33 @@ public class VentanaCitaAdmin extends JFrame {
 			        	dispose();  // Metodo que cierra la ventana
 			        }
 				}
+			});
+			
+			
+			
+			chckbxUrgente.addMouseListener(new MouseAdapter() {   // Listener de Cita Urgente
+			    @Override
+			    public void mouseClicked(MouseEvent e) {
+			        if (chckbxUrgente.contains(e.getPoint())) {
+			            if (chckbxUrgente.isSelected()) {
+			            	Optional<Cita> citaCercana = control.findProximaCitaDisponible();
+				            
+				            if (citaCercana.isPresent()) {
+				                Cita cita = citaCercana.get();
+				                
+				                // Establezca los parámetros de fecha y hora con los valores de la cita más cercana
+			                    calendar.setDate(Date.from(cita.getFecha().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+			                    comboBoxHoras.setSelectedItem(cita.getHora().toString());
+			                    comboBoxServicios.setSelectedItem(""); 
+
+				                String mensaje = "Cita más cercana:\nFecha: " + cita.getFecha() + "\nHora: " + cita.getHora();
+				                JOptionPane.showMessageDialog(null, mensaje, "Cita más cercana", JOptionPane.INFORMATION_MESSAGE);
+				            
+				            
+				        } 
+			            }
+			        }
+			    }
 			});
 			
   }
@@ -327,6 +360,7 @@ public class VentanaCitaAdmin extends JFrame {
 	this.control = control;
 	listaUsuario = null;
 	llenaUsuarios();
+	asignarusuario( (String) comboBoxPaciente.getSelectedItem());
 	servicios();    
     setVisible(true);
   }
