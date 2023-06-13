@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 import mx.uam.ayd.proyecto.presentacion.agendarCita.ControlAgendarCita;
+import mx.uam.ayd.proyecto.presentacion.consultarDiagnostico.ControlDiagnosticoUsuario;
 import mx.uam.ayd.proyecto.presentacion.precios.ControlPrecios;
 import mx.uam.ayd.proyecto.presentacion.reagendarCita.ControlReagendarCita;
 import mx.uam.ayd.proyecto.presentacion.Notificacion.ControlNotificacion;
@@ -29,6 +30,9 @@ public class ControlUsuario {
 	
    @Autowired
    private ControlActualizarDatos controlActualizarDatos;
+   
+   @Autowired
+   private ControlDiagnosticoUsuario controlDiagnosticoDatos;
 
    
    
@@ -68,5 +72,9 @@ public class ControlUsuario {
 public void actualizaDatos(Usuario usuario) {
 	   controlActualizarDatos.inicia(usuario);
    }
+
+public void consultaDiagnostico(Usuario usuario) {
+	controlDiagnosticoDatos.inicia(usuario);
+}
 
 }

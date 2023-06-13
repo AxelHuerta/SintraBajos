@@ -183,7 +183,7 @@ public class VentanaUsuario extends JFrame {
 		lblConsultarInformacion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Se dio clic en Consultar informacion.");
+				control.consultaDiagnostico(usuario);
 			}
 
 			@Override
