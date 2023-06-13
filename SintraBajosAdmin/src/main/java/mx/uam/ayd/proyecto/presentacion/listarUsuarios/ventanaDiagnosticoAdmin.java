@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
@@ -30,6 +31,9 @@ public class ventanaDiagnosticoAdmin extends JFrame {
   private Usuario usuario;
   private JLabel muestraNombre;
   private JLabel muestraApellido;
+  
+  @Autowired
+  private ventanaListaUsuarios ventana2;
 
   public ventanaDiagnosticoAdmin() {
     setResizable(false);
@@ -128,6 +132,7 @@ public class ventanaDiagnosticoAdmin extends JFrame {
       public void mouseClicked(MouseEvent e) {
         usuario.setDiagnostico(campoTexto.getText()); //Se almacena en el usuario el nuevo diagnostico.
         controlU.recuperaNuevo(usuario);
+        ventana2.termina();
       }
     });
     btnAgregar.setForeground(new Color(255, 250, 250));

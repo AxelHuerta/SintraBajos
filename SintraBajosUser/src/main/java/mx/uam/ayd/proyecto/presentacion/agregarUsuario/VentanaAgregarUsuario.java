@@ -48,6 +48,7 @@ public class VentanaAgregarUsuario extends JFrame {
 	private JTextField TCorreo;
 	private JPasswordField TPass;
 	private JDateChooser TCalendario;
+	private String Diagnostico = "";
 	private long Tel2;
 	private boolean band = false;
 
@@ -389,7 +390,7 @@ public class VentanaAgregarUsuario extends JFrame {
 					else {
 						control.agregaUsuario(TNombre.getText(), TAP.getText(), TAM.getText(), TSexo.getText(),
 								TCalendario.getDate(), TDom.getText(),Long.valueOf(TTel.getText()),TCorreo.getText(),
-								String.valueOf(TPass.getPassword()));
+								String.valueOf(TPass.getPassword()), Diagnostico);
 
 					}
 				}

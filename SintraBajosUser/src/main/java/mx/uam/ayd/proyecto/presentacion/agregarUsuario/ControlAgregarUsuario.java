@@ -43,10 +43,10 @@ public class ControlAgregarUsuario {
 	
 
 	public void agregaUsuario(String nombre, String apellidoPaterno, String apellidoMaterno, String Sexo, 
-			Date fechaNa, String Domicilio, long Telefono,String Correo, String Pass) {
+			Date fechaNa, String Domicilio, long Telefono,String Correo, String Pass,String Diagnostico) {
 
 		try {
-			servicioUsuario.agregaUsuario(nombre, apellidoPaterno,apellidoMaterno,Sexo, fechaNa, Domicilio,Telefono,Correo, Pass);
+			servicioUsuario.agregaUsuario(nombre, apellidoPaterno,apellidoMaterno,Sexo, fechaNa, Domicilio,Telefono,Correo, Pass, Diagnostico);
 			ventana.muestraDialogoConMensaje("Usuario agregado exitosamente");
 			controVentanaUsuario.inicia(validar(Correo,Pass));
 			termina();

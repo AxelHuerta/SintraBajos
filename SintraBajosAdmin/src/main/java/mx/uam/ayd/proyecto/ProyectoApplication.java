@@ -57,7 +57,7 @@ public class ProyectoApplication {
     //////////////////////////////////////////
     // cambios inecesarios
     //////////////////////////////////////////
-    System.out.println(servicioCita.listarCitas());
+   
 
   }
 }

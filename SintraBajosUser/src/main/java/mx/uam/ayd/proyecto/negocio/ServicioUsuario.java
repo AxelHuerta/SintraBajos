@@ -30,7 +30,7 @@ public class ServicioUsuario {
 	 * @return
 	 */
 	public Usuario agregaUsuario(String nombre, String apellidoPaterno, String apellidoMaterno, String sexo, Date fechaNa,
-			        String Domicilio,long Telefono, String Correo, String Pass) {
+			        String Domicilio,long Telefono, String Correo, String Pass, String diagnostico) {
 		
 		// Regla de negocio: No se permite agregar dos usuarios con el mismo nombre y apellido
 		
@@ -44,7 +44,7 @@ public class ServicioUsuario {
 		
 		
 		log.info("Agregando usuario nombre: "+nombre+" apellido Paterno: "+apellidoPaterno +" apellidoMaterno: "+apellidoMaterno
-				+ " Sexo: "+ sexo + " Fecha de Naciemiento: "+ fechaNa+ " Domicilio: "+ Domicilio+" Télefono: "+Telefono +" Correo: "+Correo+ " Contraseña: "+ Pass );
+				+ " Sexo: "+ sexo + " Fecha de Naciemiento: "+ fechaNa+ " Domicilio: "+ Domicilio+" Télefono: "+Telefono +" Correo: "+Correo+ " Contraseña: "+ Pass, diagnostico );
 		
 		usuario = new Usuario();
 		usuario.setNombre(nombre);
