@@ -1,6 +1,7 @@
 package mx.uam.ayd.proyecto.presentacion.listarUsuarios;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -50,7 +51,7 @@ public class VentanaVerUsaurio extends JFrame {
 
     setResizable(false);
     setLocationRelativeTo(null); // Centramos la ventana
-    setBounds(100, 100, 900, 600);
+    setBounds(100, 100, 900, 800);
     contentPane = new JPanel();
     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -59,7 +60,7 @@ public class VentanaVerUsaurio extends JFrame {
 
     JPanel panelRaiz = new JPanel();
     panelRaiz.setBackground(Color.white);
-    panelRaiz.setBounds(0, 0, 884, 561);
+    panelRaiz.setBounds(0, 0, 900, 800);
     contentPane.add(panelRaiz);
     panelRaiz.setLayout(null);
 
@@ -81,7 +82,7 @@ public class VentanaVerUsaurio extends JFrame {
     JPanel panelNombrePag = new JPanel();
     panelNombrePag.setLayout(null);
     panelNombrePag.setBackground(Color.lightGray);
-    panelNombrePag.setBounds(121, 0, 763, 88);
+    panelNombrePag.setBounds(121, 0, 900, 88);
     panelRaiz.add(panelNombrePag);
 
     // titulo de la cabecera
@@ -158,12 +159,12 @@ public class VentanaVerUsaurio extends JFrame {
 
     muestraDiagnostico = new JLabel();
     muestraDiagnostico.setFont(textoNormal);
-    muestraDiagnostico.setBounds(30, 370, 500, 50);
+    muestraDiagnostico.setBounds(30, 370, 800, 200);
     panelRaiz.add(muestraDiagnostico);
 
     // botón para regresar al menu
     JButton btnRegresar = new JButton("Regresar");
-    btnRegresar.setBounds(30, 520, 117, 29);
+    btnRegresar.setBounds(30, 750, 117, 29);
     btnRegresar.setBackground(Color.gray);
     btnRegresar.setForeground(Color.white);
     contentPane.add(btnRegresar);
@@ -197,6 +198,25 @@ public class VentanaVerUsaurio extends JFrame {
       diagnostico = "Aún no hay diagnósticos";
     } else {
       diagnostico = usuario.getDiagnostico();
+      String[] textoDiagnostico = diagnostico.split(" ");
+      int cantPalabras = 10;
+      int contadorPalabras = 0;
+      StringBuilder texto = new StringBuilder();
+      // Recorremos el arreglo de palabras
+      for (String palabra : textoDiagnostico) {
+        // Agregamos la palabra actual al texto formateado
+        texto.append(palabra + " ");
+        // Incrementamos el contador de palabras
+        contadorPalabras++;
+        // Verificamos si el contador de palabras alcanza la cantidad deseada por
+        // renglón
+        if (contadorPalabras == cantPalabras) {
+          // Agregamos un salto de línea HTML al texto formateado
+          texto.append("<br>");
+          // Reiniciamos el contador de palabras a cero
+          contadorPalabras = 0;
+        }
+      }
     }
 
     // agrega los datos del usario a la ventana
@@ -222,6 +242,7 @@ public class VentanaVerUsaurio extends JFrame {
     muestraCorreo.setText("Correo: " + usuario.getCorreo());
     muestraTelefono.setText("Teléfono: " + usuario.getTelefono());
     muestraDomicilio.setText("Domicilio: " + usuario.getDomicilio());
-    muestraDiagnostico.setText(diagnostico);
+    // muestraDiagnostico.setText(diagnostico);
+    muestraDiagnostico.setText("<html>" + diagnostico + "</html>");
   }
 }
