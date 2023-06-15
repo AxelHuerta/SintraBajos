@@ -47,34 +47,36 @@ public class ServicioCita {
    * @param servicio
    * @return
    */
-  public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo, String Nombre) {
-    // Regla de negocio: No se permite agendar dos citas en un mismo horario
+ public Cita agregarCita(LocalDate fecha, LocalTime hora, String servicio, String correo, String Nombre) {
+	    // Regla de negocio: No se permite agendar dos citas en un mismo horario
 
-    Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
+	    Cita cita = citaRepository.findByFechaAndHora(fecha, hora);
 
-    if (cita != null) {
+	    if (cita != null) {
+	      if (comprobarCitasDia(fecha) == true) {
+	    	  //JOptionPane.showMessageDialog(null, "Dia lleno");
+	    	  throw new IllegalArgumentException("Día lleno");
+	      } else {
+	    	  //JOptionPane.showMessageDialog(null, "Horario Ocupado");
+	    	  throw new IllegalArgumentException("Hora ocupada");
+	        }
+	    }
+	    
+	    else {
 
-      throw new IllegalArgumentException("El horario no esta disponible");
-    }
+	    // registrar datos de la cita
+	    cita = new Cita();
+	    cita.setCorreo(correo);
+	    cita.setFecha(fecha);
+	    cita.setHora(hora);
+	    cita.setServicio(servicio);
+	    cita.setNombre(Nombre);
 
-    if (comprobarCitasDia(fecha)) {
-      throw new IllegalArgumentException("Día lleno");
-    }
-
-
-    // registrar datos de la cita
-    cita = new Cita();
-    cita.setCorreo(correo);
-    cita.setFecha(fecha);
-    cita.setHora(hora);
-    cita.setServicio(servicio);
-    cita.setNombre(Nombre);
-
-    // guardar datos de la cita
-    citaRepository.save(cita);
-    
-    return cita;
-  }
+	    // guardar datos de la cita
+	    citaRepository.save(cita);
+	    }
+	    return cita;
+	  }
 
   /**
    *
