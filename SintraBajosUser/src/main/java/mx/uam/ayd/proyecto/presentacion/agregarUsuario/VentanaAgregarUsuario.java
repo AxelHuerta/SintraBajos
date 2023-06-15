@@ -368,7 +368,7 @@ public class VentanaAgregarUsuario extends JFrame {
 					// Falta Validar el telefono
 					if (TNombre.getText().equals("") || TAP.getText().equals("") || TAM.getText().equals("")
 							|| TDom.getText().equals("") || TTel.getText().equals("") || TSexo.getText().equals("")
-							|| TCorreo.getText().equals("") || TPass.getPassword().equals("")) {
+							|| TCorreo.getText().equals("") || TPass.getPassword().equals("")||TPass.getPassword().length<=0) {
 						muestraDialogoConMensaje("Los campos no deben estar vacios");
 					}
 							          	          			
@@ -386,7 +386,9 @@ public class VentanaAgregarUsuario extends JFrame {
 							|| !TCorreo.getText().contains("@")) {
 						muestraDialogoConMensaje("Verifica que el correo sea valido");
 					}
-
+					else if (TPass.getPassword().length<=7) {
+						muestraDialogoConMensaje("Ingresa una contraseña de minimo 8 caracteres");
+					}
 					else {
 						control.agregaUsuario(TNombre.getText(), TAP.getText(), TAM.getText(), TSexo.getText(),
 								TCalendario.getDate(), TDom.getText(),Long.valueOf(TTel.getText()),TCorreo.getText(),
