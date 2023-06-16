@@ -161,9 +161,11 @@ public class ventanaEditar extends JFrame {
     	  else if(textField_3.getText().length()<10 || !textField_3.getText().matches("\\d{10}")){
     		  muestraDialogoConMensaje("Verifica el Número de Télefono ingresado");
     	  }
-    	  else if(textField_4.getText().contains(".com") && !textField_4.getText().contains(".mx") || !textField_4.getText().contains("@")){
-    		  muestraDialogoConMensaje("Verifica que el correo sea valido");
-    	  }
+    	 
+	else if ((!textField_4.getText().contains(".com") && !textField_4.getText().contains(".mx"))
+		|| !textField_4.getText().contains("@")) {
+	         muestraDialogoConMensaje("Verifica que el correo sea valido");
+	  }
           else{
         	  usuario.setNombre(textField.getText());
         	  usuario.setApellido(textField_1.getText());
